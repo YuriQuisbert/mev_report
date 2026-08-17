@@ -643,7 +643,24 @@
       line-height: 1;
     }
 
+    .diagnosis-actions-content {
+      display: block;
+      min-width: 0;
+    }
+
+    .diagnosis-actions-card-title {
+      display: block;
+      margin-bottom: 0.055in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
     .diagnosis-actions-text {
+      display: block;
       font-size: 10pt;
       line-height: 1.32;
       text-align: left;
@@ -2016,9 +2033,30 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
         .filter(Boolean);
     }
 
-    function getAxisPageLinks(axisData) {
-      if (!axisData) return [];
-      return [
+    function getObjectValue(object, keys) {
+      if (!object || typeof object !== "object") return undefined;
+      for (const key of keys) {
+        if (Object.prototype.hasOwnProperty.call(object, key)) return object[key];
+      }
+      return undefined;
+    }
+
+    function getAxisPageLinks(axisData, linksData, axis) {
+      const axisLinkKeys = [
+        axis.sourceKey,
+        axis.pageId,
+        axis.tituloEixo,
+        axis.radarNome,
+        axis.linkKey,
+        axis.linkAlias,
+        axis.sourceKey && axis.sourceKey.toLowerCase(),
+        axis.sourceKey === "Instagram" ? "instagram" : "",
+        axis.sourceKey === "Instagram" ? "Instagra" : "",
+        axis.sourceKey === "Video" ? "video" : "",
+        axis.sourceKey === "Site" ? "site" : ""
+      ].filter(Boolean);
+      const linksFromDedicatedField = getObjectValue(linksData, axisLinkKeys);
+      const linksFromAxisData = getObjectValue(axisData, [
         "paginaAnalisada",
         "pagina_analisada",
         "pagina analisada",
@@ -2037,7 +2075,12 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
         "YouTube",
         "tiktok",
         "TikTok"
-      ].flatMap((key) => normalizeLinkList(axisData[key]));
+      ]);
+
+      return [
+        ...normalizeLinkList(linksFromDedicatedField),
+        ...normalizeLinkList(linksFromAxisData)
+      ];
     }
 
     function normalizeRecommendations(recommendations) {
@@ -2049,6 +2092,10 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
 
     function normalizeFinalReportData(rawJson) {
       const source = firstReportRecord(rawJson);
+      const summaryData = source.Resumo_plano || source.resumo_plano || source;
+      const linksData = source.link || source.links || source.Link || source.Links || {};
+      const fazerAgora = Array.isArray(summaryData.fazer_agora) ? summaryData.fazer_agora : (Array.isArray(summaryData.acoesAgora) ? summaryData.acoesAgora : []);
+      const planoAcao = Array.isArray(summaryData.plano_acao) ? summaryData.plano_acao : [];
       const pages = {};
 
       FINAL_AXIS_CONFIG.forEach((axis) => {
@@ -2059,13 +2106,14 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
           textoPrincipal: axisData.texto || "",
           notaEixo: axis.qualitativeOnly ? "" : (axisData.nota !== undefined ? axisData.nota : ""),
           recomendacoes: normalizeRecommendations(axisData.recomendacoes),
-          paginaAnalisada: getAxisPageLinks(axisData)
+          paginaAnalisada: getAxisPageLinks(axisData, linksData, axis)
         };
       });
 
       pages.diagnostico = {
         tituloResumo: "Diagnóstico geral",
-        resumo: source.Resumo_plano && source.Resumo_plano.diagnostico_geral ? source.Resumo_plano.diagnostico_geral : "",
+        resumo: summaryData.diagnostico_geral || "",
+        acoesAgora: fazerAgora,
         radarEixos: {
           escalaMaxima: 10,
           eixos: FINAL_AXIS_CONFIG.map((axis) => {
@@ -2081,18 +2129,18 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
 
       pages.plano_acao = {
         planoAcao: {
-          horizontes: source.Resumo_plano && Array.isArray(source.Resumo_plano.plano_acao) ? source.Resumo_plano.plano_acao : []
+          horizontes: planoAcao
         }
       };
 
       pages.capa = {
-        nomeMedico: source["Nome do aluno"] || "",
+        nomeMedico: source["Nome do aluno"] || source.nome || source.Nome || "",
         dataRelatorio: source.data_relatorio || ""
       };
 
       return {
         medico: {
-          nome: source["Nome do aluno"] || ""
+          nome: source["Nome do aluno"] || source.nome || source.Nome || ""
         },
         relatorio: {
           data: source.data_relatorio || ""
@@ -2669,15 +2717,37 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
       `;
     }
 
+    function normalizeDiagnosisAction(action, index) {
+      if (action && typeof action === "object") {
+        return {
+          titulo: action.titulo || "Ação " + (index + 1),
+          motivo: action.motivo || action.texto || ""
+        };
+      }
+
+      return {
+        titulo: "Ação " + (index + 1),
+        motivo: action || ""
+      };
+    }
+
     function renderDiagnosisActions(field) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas.diagnostico;
+      const sourceActions = Array.isArray(pageData && pageData.acoesAgora) ? pageData.acoesAgora : [];
+      const fallbackActions = [
+        { titulo: "Padronizar informações", motivo: "Padronizar nome, especialidade, cidade, região de atendimento, telefone, WhatsApp, links principais e descrições em todos os pontos onde o paciente confirma as informações antes de decidir entrar em contato." },
+        { titulo: "Reforçar clareza", motivo: "Reforçar as informações que ajudam o paciente a entender a atuação, os diferenciais, os temas tratados, o tipo de consulta e o caminho recomendado antes de enviar uma mensagem ou agendar atendimento." },
+        { titulo: "Priorizar impacto", motivo: "Priorizar os canais com maior impacto na descoberta e na confiança do consultório, começando pelos ajustes que melhoram busca local, clareza de contato, consistência entre plataformas e percepção profissional." }
+      ];
+      const actions = (sourceActions.length > 0 ? sourceActions : fallbackActions).slice(0, 3).map(normalizeDiagnosisAction);
+      const items = actions.map((action, index) => `
+        <li><span class="diagnosis-actions-number">${index + 1}</span><span class="diagnosis-actions-content"><span class="diagnosis-actions-card-title">${escapeHtml(action.titulo)}</span><span class="diagnosis-actions-text">${renderInlineMarkdown(action.motivo)}</span></span></li>
+      `).join("");
+
       field.innerHTML = `
         <div class="diagnosis-actions-shell">
           <div class="diagnosis-actions-title">Se você for mexer em três coisas</div>
-          <ul class="diagnosis-actions-list">
-            <li><span class="diagnosis-actions-number">1</span><span class="diagnosis-actions-text">Padronizar nome, especialidade, cidade, região de atendimento, telefone, WhatsApp, links principais e descrições em todos os pontos onde o paciente confirma as informações antes de decidir entrar em contato.</span></li>
-            <li><span class="diagnosis-actions-number">2</span><span class="diagnosis-actions-text">Reforçar as informações que ajudam o paciente a entender a atuação, os diferenciais, os temas tratados, o tipo de consulta e o caminho recomendado antes de enviar uma mensagem ou agendar atendimento.</span></li>
-            <li><span class="diagnosis-actions-number">3</span><span class="diagnosis-actions-text">Priorizar os canais com maior impacto na descoberta e na confiança do consultório, começando pelos ajustes que melhoram busca local, clareza de contato, consistência entre plataformas e percepção profissional.</span></li>
-          </ul>
+          <ul class="diagnosis-actions-list">${items}</ul>
         </div>
       `;
     }
@@ -3078,4 +3148,5 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
   </script>
 </body>
 </html>
+
 
