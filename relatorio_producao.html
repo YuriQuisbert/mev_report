@@ -1235,6 +1235,40 @@
         box-shadow: none;
       }
     }
+
+        /* CONSTRUCTION ONLY: temporary builder tools. Hidden in print. */
+    .builder-tools {
+      position: fixed !important;
+      top: 12px !important;
+      right: 12px !important;
+      z-index: 2147483647 !important;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .builder-tool-button {
+      border: 0;
+      border-radius: 4px;
+      background: #ed1877;
+      color: #ffffff;
+      padding: 9px 12px;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .builder-export-button {
+      background: #04b8c9;
+    }
+
+    @media print {
+      .builder-tools {
+        display: none !important;
+      }
+    }
     .field-plano-acao {
       left: 6.0459%;
       top: 21.7707%;
@@ -1528,7 +1562,11 @@
       content: "resultadoEsperado";
     }</style>
 </head>
-<body>  <main class="report" id="report"></main>
+<body>  <div class="builder-tools" aria-label="Ferramentas de construção">
+    <button class="builder-tool-button" type="button" id="toggleDebugBoxes">Debug boxes</button>
+    <button class="builder-tool-button builder-export-button" type="button" id="exportPdfButton">Exportar PDF</button>
+  </div>
+  <main class="report" id="report"></main>
 
   <script>
 /* qrcodejs 1.0.0 - MIT - embedded for offline rendering */
@@ -1969,11 +2007,208 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
       }
     };
 
-        /* =========================================================
+    /* =========================================================
        SECAO 3: JSON VARIAVEL DO RELATORIO
-       O n8n deve substituir o marcador abaixo pelo JSON final.
+       Conteudos personalizados gerados pelo n8n. Ao trocar este
+       bloco por outro JSON, o relatorio deve atualizar todo o
+       conteudo dinamico automaticamente.
        ========================================================= */
-    const REPORT_INPUT = FINAL_REPORT_JSON;
+    /* =========================================================
+       SECAO 3: JSON VARIAVEL DO RELATORIO
+       Substitua apenas o array FINAL_REPORT_JSON pelo JSON final
+       gerado pelo n8n. O normalizador abaixo converte esse formato
+       para a estrutura interna usada pelas paginas do relatorio.
+       ========================================================= */
+    const FINAL_REPORT_JSON = [
+  {
+    "id": 1,
+    "Nome do aluno": "Juliano Grunheidt Maia",
+    "Cidade": "São Paulo",
+    "Especialidade": "Medicina esportiva",
+    "diagnostico_geral": "Juliano Grunheidt Maia possui uma base digital bem estabelecida, com forte reputação no Google e canais próprios funcionais que facilitam a validação por quem já o conhece. O principal desafio reside na divergência de informações geográficas entre as fontes e na dificuldade de ser descoberto por novos pacientes que buscam pela especialidade em São Paulo. O foco deve ser a padronização dos dados de localização e a ampliação de conteúdos que conectem sua atuação técnica à região de atendimento.",
+    "fazer_agora": [
+      {
+        "titulo": "Padronizar informações locais",
+        "motivo": "Alinhar cidade, endereço e canais oficiais para reduzir dúvidas do paciente antes do agendamento."
+      },
+      {
+        "titulo": "Reforçar a especialidade",
+        "motivo": "Conectar melhor a atuação em medicina esportiva aos textos do site, perfis e buscas pela cidade."
+      },
+      {
+        "titulo": "Priorizar canais de descoberta",
+        "motivo": "Começar pelos ajustes com maior impacto em Google, Google Meu Negócio e consistência entre plataformas."
+      }
+    ],
+    "plano_acao": [
+        {
+          "periodo": "30 dias",
+          "tema": "Corrigir informações locais",
+          "acoes": [
+            {
+              "titulo": "Padronizar endereços no site e Instagram",
+              "motivo": "As informações conflitantes sobre atendimento em Santos e São Paulo confundem o paciente e prejudicam a confiabilidade dos canais oficiais."
+            },
+            {
+              "titulo": "Ajustar a categoria no Google Maps",
+              "motivo": "O uso do termo genérico Médico dificulta que o perfil seja encontrado por quem busca especificamente por Medicina Esportiva na capital."
+            },
+            {
+              "titulo": "Unificar o nome profissional nos canais",
+              "motivo": "Adotar um formato uniforme em perfis e portais médicos facilita a confirmação da identidade e evita confusões com outros profissionais."
+            }
+          ],
+          "resultado_esperado": "Ao final de 30 dias, as informações de contato e localização estarão uniformes, eliminando dúvidas do paciente e garantindo que o perfil seja identificado corretamente nas buscas locais."
+        },
+        {
+          "periodo": "60 dias",
+          "tema": "Fortalecer a apresentação",
+          "acoes": [
+            {
+              "titulo": "Revisar conteúdos técnicos do site",
+              "motivo": "Conectar melhor os temas de emagrecimento à Medicina Esportiva ajuda a representar com mais precisão a amplitude do trabalho realizado pelo médico."
+            },
+            {
+              "titulo": "Melhorar a estética visual do site",
+              "motivo": "Ajustar a relação entre imagens e textos em blocos específicos do site garante uma navegação mais coerente com o posicionamento profissional."
+            },
+            {
+              "titulo": "Criar vídeo de apresentação profissional",
+              "motivo": "Explicar a especialidade e a forma de atendimento em vídeo gera proximidade e ajuda na familiaridade do público antes da consulta presencial."
+            }
+          ],
+          "resultado_esperado": "Ao final de 60 dias, o profissional terá uma apresentação visual mais equilibrada e conteúdos que explicam melhor sua especialidade, aumentando a clareza sobre o serviço oferecido."
+        },
+        {
+          "periodo": "90 dias",
+          "tema": "Consolidar a presença",
+          "acoes": [
+            {
+              "titulo": "Aumentar postagens no Instagram",
+              "motivo": "Uma rotina constante de publicações mantém o perfil atualizado para novos visitantes e reforça a presença informativa do profissional."
+            },
+            {
+              "titulo": "Publicar páginas de serviços específicos",
+              "motivo": "Detalhar condições e tratamentos no site aumenta a chance de o médico ser citado em pesquisas sobre temas específicos de sua área de atuação."
+            }
+          ],
+          "resultado_esperado": "Ao final de 90 dias, a presença digital estará consolidada com uma rotina de atualizações e novos pontos de contato que facilitam a descoberta do médico por um público mais amplo."
+        }
+      ],
+    "Google": {
+      "titulo": "Fácil de confirmar pelo nome, mas pouco descoberto pela especialidade em São Paulo",
+      "texto": "O Google costuma ser utilizado para confirmar uma indicação ou para encontrar um novo especialista. Esse tipo de procura auxilia na validação das informações de quem atende e onde o serviço é prestado.\\n\\nJuliano Grunheidt Maia é encontrado sem dificuldades quando a pesquisa utiliza seu nome completo. Redes sociais, perfis profissionais e o site auxiliam na conferência da especialidade e da atuação em São Paulo, embora a página principal apresente foco voltado ao emagrecimento. Essa facilidade assegura que quem recebeu uma recomendação chegue aos meios de contato e conheça o trabalho do médico, apesar de nomes parecidos em portais de agendamento exigirem atenção.\\n\\nO quadro muda quando a procura ocorre apenas pela especialidade e cidade. Nessas condições, o profissional não surge entre os primeiros resultados, que ficam concentrados em portais médicos e grandes institutos de saúde. Por causa disso, quem ainda não conhece o trabalho do médico acaba encontrando primeiro outras alternativas de atendimento que possuem maior espaço nessas listas de resultados.\\n\\nA análise mostra uma diferença entre ser validado por quem já conhece o nome e ser descoberto por novos pacientes. Enquanto as páginas atuais funcionam bem para confirmar a formação e o local de trabalho, o pouco destaque nas pesquisas por especialidade reduz o contato com um público mais amplo. A presença atual cumpre o papel de informar quem já sabe quem procurar, mas tem pouco alcance nas buscas gerais.",
+      "nota": 4,
+      "recomendacoes": [
+        {
+          "texto": "Revisar e ampliar no site os conteúdos que relacionam a atuação em Medicina esportiva à cidade de São Paulo. A apresentação deve explicar o perfil do atendimento e as principais situações acompanhadas.",
+          "esforco": 3
+        },
+        {
+          "texto": "Revisar e ampliar no site as informações que aparecem principalmente em portais médicos, reunindo apresentação, especialidade e locais de atuação em uma fonte própria mais completa.",
+          "esforco": 3
+        },
+        {
+          "texto": "Revisar o nome profissional utilizado nas páginas e perfis que aparecem no Google, adotando um formato uniforme. O ajuste facilita a confirmação da identidade e reduz a possibilidade de confusão com outros nomes.",
+          "esforco": 1
+        }
+      ]
+    },
+    "GMN": {
+      "titulo": "Reputação máxima em perfil ativo com necessidade de maior alcance local",
+      "texto": "O Google Maps funciona como um guia para pacientes que buscam localizar o consultório, verificar detalhes práticos ou encontrar especialistas na região. Com ele, o público consulta horários e relatos, servindo como referência rápida durante a procura por cuidado médico na cidade.\\n\\nO perfil individual de Juliano Grunheidt Maia apresenta dados completos e transmite credibilidade, com nota máxima em 27 avaliações. O canal exibe sinais de atividade, com fotos e postagens recentes. A principal observação reside na categoria, Médico, que por ser genérica, não descreve com precisão a atuação em medicina esportiva para quem faz buscas rápidas.\\n\\nAo procurar pela especialidade em São Paulo, o profissional não aparece nos primeiros resultados. A realidade local é ocupada por centros que usam classificações segmentadas. Embora a página esteja bem cuidada, ela ainda não atingiu o patamar de exposição dos nomes que dominam as buscas locais para esse termo.\\n\\nA presença na plataforma é marcada por excelente percepção dos pacientes. O perfil oferece tranquilidade para quem já conhece o nome, mas pode ser melhor percebido por quem ainda não o conhece. Ajustar a categoria e detalhar serviços ajudam a tornar essa vitrine mais precisa na capital.",
+      "nota": 6,
+      "recomendacoes": [
+        {
+          "texto": "Revisar a categoria principal do perfil e adotar uma opção mais específica para Medicina Esportiva, caso esteja disponível e represente corretamente a atuação. O ajuste facilita o entendimento rápido de quem encontra o perfil.",
+          "esforco": 1
+        },
+        {
+          "texto": "Revisar categoria, serviços e apresentação do perfil para deixar mais clara a relação com Medicina Esportiva em São Paulo. O objetivo é facilitar a compreensão de quem encontra o perfil durante uma pesquisa local.",
+          "esforco": 2
+        }
+      ]
+    },
+    "Instagram": {
+      "titulo": "Apresentação profissional nítida com orientações diretas de contato",
+      "texto": "O Instagram funciona como um espaço de aproximação entre quem busca cuidado e o médico. Esse canal permite que o público conheça o rosto por trás do atendimento e entenda a medicina exercida. A página orienta as etapas para marcar uma consulta, criando tranquilidade antes da conversa presencial.\\n\\nJuliano Grunheidt Maia apresenta um perfil com identificação visível e fotografia que transmite seriedade. A especialidade e o registro profissional facilitam o reconhecimento da atuação. Um ponto de atenção é a menção a Santos na biografia, enquanto o endereço do consultório indica a capital, o que pode causar dúvida no paciente. O link encaminha para o aplicativo de mensagens, simplificando a busca por horários.\\n\\nOs temas tratam de questões comuns no emagrecimento, como o ganho de peso e o metabolismo. Os materiais fixados apresentam o consultório e explicam a importância do acompanhamento individualizado. O uso de fotos pessoais cria proximidade sem perder a postura profissional. Pela amostra, o ritmo de postagens pode ser mais frequente para manter o perfil atualizado para quem o visita.\\n\\nA página oferece uma navegação tranquila e mostra um médico preparado. A foto e os vídeos de apresentação dão as boas-vindas de maneira adequada. O caminho de contato funciona sem interrupções. Harmonizar os dados de localidade e manter a constância nas publicações ajudaria a manter a página como um ponto de apoio informativo.",
+      "nota": 8,
+      "recomendacoes": [
+        {
+          "texto": "Revisar no perfil a informação sobre a cidade de atendimento e apresentá-la de forma coerente com os demais canais confirmados. O ajuste evita que o paciente encontre orientações diferentes.",
+          "esforco": 1
+        },
+        {
+          "texto": "Aumentar a frequência de publicações profissionais, mantendo uma continuidade compatível com a rotina do profissional. A presença regular ajuda a manter o perfil atualizado para quem o visita.",
+          "esforco": 4
+        }
+      ]
+    },
+    "Site": {
+      "titulo": "Conteúdo claro e funcional, com boa identificação pelo nome",
+      "texto": "O site próprio é o espaço para apresentar o trabalho do médico, detalhar a forma de atendimento e organizar os canais de contato. Ele funciona para reunir dados sobre a carreira e facilitar a localização do profissional quando o paciente realiza buscas diretas.\\n\\nJuliano Grunheidt Maia é identificado assim que o paciente acessa a página, que destaca o foco em emagrecimento e medicina do estilo de vida. A apresentação visual é organizada e utiliza cores que transmitem tranquilidade, mantendo uma estrutura de leitura simples. Embora a imagem inicial seja de alta qualidade, alguns blocos de ícones mais abaixo possuem uma estética menos refinada que o restante do conjunto.\\n\\nO paciente compreende as etapas da consulta, que incluem desde um questionário inicial até o acompanhamento contínuo por mensagens. A apresentação do currículo, da residência médica e de depoimentos de pacientes ajudam a confirmar a experiência do médico na área. O caminho para o contato é facilitado por botões que levam diretamente ao atendimento e o site foi identificado nas pesquisas pelo nome, reforçando sua associação ao profissional.\\n\\nO site cumpre bem a função de informar e oferecer um caminho direto para o agendamento, apresentando o profissional com clareza. A estrutura é atualizada e facilita o reconhecimento do médico por quem busca pelo seu trabalho, restando apenas ajustes pontuais na parte estética para que toda a página mantenha o mesmo padrão visual.",
+      "nota": 8,
+      "recomendacoes": [
+        {
+          "texto": "Revisar o conteúdo principal para conectar melhor o emagrecimento à atuação em Medicina esportiva. A mudança ajuda o site a representar de forma mais completa o trabalho do profissional.",
+          "esforco": 3
+        },
+        {
+          "texto": "Revisar a apresentação visual do site, ajustando a distribuição dos conteúdos, os espaços, o tamanho dos textos e a relação entre imagens e informações. O objetivo é tornar a experiência mais agradável e coerente com o posicionamento profissional.",
+          "esforco": 4
+        }
+      ]
+    },
+    "Video": {
+      "titulo": "TikTok e YouTube ainda não utilizados profissionalmente",
+      "texto": "O contato entre paciente e médico se torna mais próximo com imagem e som. Vídeos no TikTok ou no YouTube ajudam quem busca ajuda a conhecer a postura do profissional e seu modo de explicar temas de saúde, o que reduz dúvidas antes da consulta.\n\nJuliano Grunheidt Maia ainda não possui perfis profissionais no TikTok ou no YouTube. Esses espaços servem para o médico demonstrar conhecimento de forma acessível. Sem o vídeo, o interessado deixa de ouvir as explicações e de notar a tranquilidade transmitida pelo profissional em São Paulo. A ausência desses canais limita o conhecimento sobre o estilo do atendimento oferecido.\n\nNa medicina esportiva, um canal no TikTok ou no YouTube abordaria temas como lesões e performance. O médico poderia esclarecer dúvidas comuns, mostrando como funciona o acompanhamento. Esse conteúdo ajuda o público a entender a proposta de trabalho e aproxima o Dr. Juliano de quem busca ajuda técnica, apoiando a escolha pelo profissional através da clareza das informações.\n\nA produção de vídeos ainda não começou. Sem o TikTok ou o YouTube, a comunicação não utiliza a proximidade que a imagem oferece ao público. Começar a gravar conteúdos simples com orientações de saúde é o passo principal para ser encontrado. O objetivo agora é escolher um canal para manter publicações constantes sobre os temas da especialidade.",
+      "nota": 0,
+      "recomendacoes": [
+        {
+          "texto": "Considerar o início de uma presença profissional em vídeo no TikTok ou no YouTube, escolhendo apenas o canal mais simples de manter. Os conteúdos podem abordar dúvidas frequentes e situações em que o paciente pode procurar atendimento.",
+          "esforco": 4
+        },
+        {
+          "texto": "Criar um vídeo curto de apresentação explicando especialidade, cidade de atendimento, principais motivos de procura e como iniciar o contato. Esse conteúdo ajuda quem encontra o perfil pela primeira vez.",
+          "esforco": 2
+        }
+      ]
+    },
+    "NAP": {
+      "titulo": "Identificação clara do profissional e facilidade de contato, com necessidade de ajuste na localização",
+      "texto": "O NAP trata da compatibilidade entre nome, localização e contato nas fontes disponíveis. Manter as informações iguais ajuda o paciente a confirmar o profissional, saber onde ele atende e escolher o caminho correto para agendamento.\\n\\nJuliano Grunheidt Maia é encontrado por meio do site oficial, redes sociais e no perfil no Google Maps. Os dados de CRM e RQE estão presentes nessas fontes principais, o que ajuda na confirmação da identidade médica. O site e o perfil no Google Maps reúnem as informações sobre o trabalho do médico.\\n\\nO profissional apresenta atendimento em São Paulo, na Vila Clementino, segundo as informações no Google Maps, enquanto o site e o Instagram apontam uma atuação em Santos. O número de WhatsApp para contato é o mesmo nos canais oficiais, garantindo um caminho para o agendamento. Não foi possível confirmar se os endereços indicam unidades diferentes ou se houve uma mudança definitiva de cidade, o que pode causar dúvida sobre o local correto.\\n\\nO paciente consegue identificar o médico e possui acesso ao contato para agendar consultas. A presença no Google Maps oferece uma referência para localização, mas a indicação de cidades diferentes entre as fontes pede um ajuste. Organizar as informações de local de atendimento trará clareza para quem busca o consultório.",
+      "nota": 8,
+      "recomendacoes": []
+    },
+    "IA": {
+      "titulo": "Identidade clara, mas com pouca presença em pesquisas abertas",
+      "texto": "Foi feita uma pesquisa simulando a pergunta de um paciente à inteligência artificial sobre os médicos de medicina esportiva em São Paulo. O resultado varia conforme a pergunta, a localização e a ferramenta. Aparecer ou não nessas respostas não mede a qualidade médica, servindo apenas para avaliar como as informações profissionais são encontradas digitalmente.\n\nNa resposta analisada, Juliano Grunheidt Maia não foi citado. A consulta destacou nomes cujas fontes digitais possuem ligação direta com o termo pesquisado. Esse resultado indica que os dados públicos do médico ainda não são priorizados para essa busca, apesar de ele possuir canais próprios ativos que confirmam suas credenciais e atuação na região.\n\nA prontidão atual tem pontos positivos, como a confirmação da identidade pelo nome em portais e redes sociais. Entretanto, a associação com a especialidade concorre com o foco em emagrecimento, o que pode dispersar a leitura das ferramentas. A baixa presença em pesquisas abertas indica que a descoberta depende muito da procura direta pelo nome do profissional.\n\nO nível de prontidão é regular, com informações que ainda não geram resultados para quem busca apenas pela especialidade na cidade. O progresso depende de reforçar a união pública entre a área de atuação e a região. Ajustar os termos nos canais oficiais ajudará as ferramentas a relacionar o médico aos temas de medicina do esporte.",
+      "recomendacoes": [
+        {
+          "texto": "Ampliar no site e nas fontes externas a associação entre a especialidade, a cidade e os principais motivos de procura. O objetivo é reduzir a dependência da pesquisa direta pelo nome.",
+          "esforco": 3
+        },
+        {
+          "texto": "Criar no site páginas claras sobre as principais condições, tratamentos e dúvidas relacionadas à especialidade. Esses conteúdos ajudam a explicar publicamente a atuação do médico e podem aumentar a probabilidade de aparecimento em pesquisas específicas.",
+          "esforco": 3
+        }
+      ]
+    },
+    "data_relatorio": "Agosto, 2026",
+    "link": {
+      "GMN": [
+        "https://www.google.com/maps/search/?api=1&query=Nutrologia%2C%20Medicina%20Esportiva%20e%20Medicina%20do%20Estilo%20de%20Vida%7C%20Dr%20Juliano%20Maia&query_place_id=ChIJ6dyE1AZbzpQRoYD9Oz2xtBk"
+      ],
+      "instagram": [
+        "https://www.instagram.com/drjulianomaia/"
+      ],
+      "site": [
+        "https://drjulianomaiaemagrecimento.com.br/principal/"
+      ],
+      "video": []
+    }
+  }
+];
 
     const FINAL_AXIS_CONFIG = [
       {
@@ -2152,7 +2387,7 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
       };
     }
 
-    const VARIABLE_DATA = normalizeFinalReportData(REPORT_INPUT);
+    const VARIABLE_DATA = normalizeFinalReportData(FINAL_REPORT_JSON);
     const REPORT_DATA = {
       ...FIXED_DATA,
       ...VARIABLE_DATA,
@@ -2415,10 +2650,9 @@ Por fim, o ambiente digital está em **constante mudança**. Resultados de busca
 
     function renderAxisPageLink(field, pageId) {
       const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
-      const links = normalizeLinkList(pageData && pageData.paginaAnalisada).slice(0, pageId === "eixos_5" ? 2 : 1);
-      if (links.length === 0) {
-        return false;
-      }
+      const jsonLinks = normalizeLinkList(pageData && pageData.paginaAnalisada);
+      const testLinks = pageId === "eixos_5" ? ["https://google.com", "https://google.com"] : ["https://google.com"];
+      const links = (jsonLinks.length > 0 ? jsonLinks : testLinks).slice(0, pageId === "eixos_5" ? 2 : 1);
 
       field.dataset.axisPageLinkVisible = "true";
       field.classList.toggle("has-two-qrs", links.length > 1);
@@ -3142,7 +3376,34 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
       recalculateAxisLayouts();
       validateNoParagraphSeparatorLeak();
     }
+    function updateDebugToggleButton() {
+      const button = document.getElementById("toggleDebugBoxes");
+      if (!button) return;
+      button.textContent = ASSETS.showDebugBoxes ? "Debug: ON" : "Debug: OFF";
+      button.setAttribute("aria-pressed", String(Boolean(ASSETS.showDebugBoxes)));
+    }
+
+    function setupBuilderDebugToggle() {
+      const button = document.getElementById("toggleDebugBoxes");
+      if (!button) return;
+      updateDebugToggleButton();
+      button.addEventListener("click", () => {
+        ASSETS.showDebugBoxes = !ASSETS.showDebugBoxes;
+        document.body.classList.toggle("debug-boxes", Boolean(ASSETS.showDebugBoxes));
+        updateDebugToggleButton();
+      });
+    }
+
+    function setupBuilderPdfExport() {
+      const button = document.getElementById("exportPdfButton");
+      if (!button) return;
+      button.addEventListener("click", () => {
+        requestAnimationFrame(() => window.print());
+      });
+    }
     renderReport();
+    setupBuilderDebugToggle();
+    setupBuilderPdfExport();
     requestAnimationFrame(() => requestAnimationFrame(recalculateAndValidateReport));
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => requestAnimationFrame(recalculateAndValidateReport));
