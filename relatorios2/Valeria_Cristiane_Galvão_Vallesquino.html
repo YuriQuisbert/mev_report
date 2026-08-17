@@ -1,0 +1,3340 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatorio MEV Brasil</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Sans";
+      src: url("assets/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "IBM Plex Sans";
+      src: url("assets/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
+    @font-face {
+      font-family: "IBM Plex Sans Condensed";
+      src: url("assets/fonts/IBM_Plex_Sans/IBMPlexSans_SemiCondensed-BoldItalic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Darker Grotesque";
+      src: url("assets/fonts/Darker_Grotesque/DarkerGrotesque-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Condensed Bold";
+      src: url("assets/fonts/IBM_Plex_Sans/IBMPlexSans_SemiCondensed-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Condensed SemiBold";
+      src: url("assets/fonts/IBM_Plex_Sans/IBMPlexSans_SemiCondensed-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e5e5e5;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #111;
+    }
+
+    body {
+      display: block;
+    }
+
+    .report {
+      width: 210mm;
+      margin: 0 auto;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      overflow: visible;
+      background: #fff;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .page-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .field {
+      position: absolute;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: normal;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+
+    .field p {
+      margin: 0 0 0.85em;
+    }
+
+    .field p:last-child {
+      margin-bottom: 0;
+    }
+
+    .field strong {
+      font-weight: 700;
+    }
+
+    .field em {
+      font-style: italic;
+    }
+    .field-name {
+      left: 65.9492%;
+      top: 62.5588%;
+      width: 27.9763%;
+      height: 7.4061%;
+      --max-font-size: 72pt;
+      --min-font-size: 8pt;
+      font-family: "IBM Plex Sans Condensed", "IBM Plex Sans", Arial, sans-serif;
+      font-size: var(--max-font-size);
+      font-weight: 700;
+      font-style: italic;
+      color: #ffffff;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      line-height: 1;
+      text-transform: none;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .field-date {
+      left: 65.9492%;
+      top: 83.3986%;
+      width: 27.9763%;
+      height: 3.35%;
+      --max-font-size: 24pt;
+      --min-font-size: 3pt;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: var(--max-font-size);
+      font-weight: 500;
+      color: #ffffff;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      line-height: 1;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+
+
+    .field-o-que-e-col-1,
+    .field-o-que-e-col-2 {
+      display: block;
+      top: 29.2235%;
+      width: 40.8102%;
+      height: 57.7268%;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 10pt;
+      font-weight: 400;
+      color: #000000;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: justify;
+      line-height: 1.5;
+      white-space: pre-line;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .field-o-que-e-col-1 {
+      left: 6.0459%;
+    }
+
+    .field-o-que-e-col-2 {
+      left: 53.1197%;
+    }
+
+
+    .field-o-que-e-tagline {
+      left: 8.7666%;
+      top: 89.7118%;
+      width: 82.4547%;
+      height: 1.625%;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans Condensed", "IBM Plex Sans", Arial, sans-serif;
+      --max-font-size: 18pt;
+      --min-font-size: 4pt;
+      font-size: var(--max-font-size);
+      font-weight: 600;
+      color: #04b8c9;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1;
+      text-transform: uppercase;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+
+
+
+
+    .field-metodologia {
+      left: 6.0459%;
+      top: 23.0%;
+      width: 87.91%;
+      height: 70.8%;
+      display: block;
+      color: #ffffff;
+      overflow: visible;
+    }
+
+    .methodology-shell {
+      --accent: #04b8c9;
+      --muted: rgba(255, 255, 255, 0.68);
+      --line: rgba(255, 255, 255, 0.2);
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 0.16in;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #ffffff;
+      position: relative;
+      padding-bottom: 0.24in;
+      box-sizing: border-box;
+    }
+
+    .methodology-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.42in;
+      align-items: center;
+      min-height: 1.0in;
+      padding-bottom: 0.1in;
+      border-bottom: 1pt solid rgba(255, 255, 255, 0.38);
+    }
+
+    .methodology-title {
+      margin: 0;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 33.5pt;
+      font-weight: 800;
+      line-height: 0.86;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .methodology-title span { color: var(--accent); }
+
+    .methodology-intro {
+      position: relative;
+      margin: 0;
+      max-width: 3.82in;
+      padding-left: 0.22in;
+      font-size: 10.1pt;
+      line-height: 1.32;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .methodology-intro::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.03in;
+      bottom: 0.035in;
+      width: 0.035in;
+      background: var(--accent);
+    }
+
+    .methodology-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.36in;
+      min-height: 0;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .methodology-panel { min-height: 0; height: 100%; padding-top: 0.02in; display: flex; flex-direction: column; }
+
+    .methodology-panel-title {
+      margin: 0 0 0.2in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 15pt;
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .methodology-text-block {
+      display: grid;
+      gap: 0.16in;
+      height: auto;
+      align-content: start;
+      font-size: 10.4pt;
+      line-height: 1.42;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .methodology-text-block p {
+      margin: 0;
+      text-align: justify;
+    }
+
+    .methodology-text-callout {
+      margin-top: 0.04in;
+      padding: 0.16in 0.18in;
+      border-left: 0.06in solid var(--accent);
+      background: rgba(255, 255, 255, 0.055);
+      color: #ffffff;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      line-height: 0.96;
+      text-transform: uppercase;
+    }
+
+    .methodology-axis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: repeat(7, minmax(0, 1fr));
+      gap: 0.055in;
+      height: 100%;
+      align-content: start;
+    }
+
+    .methodology-axis-card {
+      min-height: 0;
+      padding: 0.055in 0.1in;
+      border-left: 0.045in solid var(--accent);
+      background: rgba(255, 255, 255, 0.055);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .methodology-axis-card-title {
+      display: block;
+      margin-bottom: 0.02in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 11.6pt;
+      font-weight: 800;
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .methodology-axis-card-text {
+      display: block;
+      font-size: 7.85pt;
+      line-height: 1.13;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .methodology-axis-card-qualitative {
+      border-left-color: #b8b8b8;
+      background: rgba(255, 255, 255, 0.085);
+    }
+
+    .methodology-axis-card-qualitative .methodology-axis-card-title {
+      color: #d6d6d6;
+    }
+
+    .methodology-axis-footnote {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 7.2pt;
+      line-height: 1.16;
+      color: rgba(255, 255, 255, 0.64);
+    }
+
+
+    .methodology-scale {
+      display: grid;
+      grid-template-rows: repeat(6, minmax(0, 1fr));
+      gap: 0.06in;
+      height: 100%;
+    }
+
+    .methodology-scale-item {
+      display: grid;
+      grid-template-columns: 0.7in 1fr;
+      align-items: center;
+      gap: 0.13in;
+      min-height: 0;
+      padding: 0.06in 0.1in;
+      background: rgba(255, 255, 255, 0.045);
+      border-left: 0.075in solid var(--level-color);
+    }
+
+    .methodology-scale-score {
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 20pt;
+      font-weight: 800;
+      line-height: 0.85;
+      color: var(--level-color);
+      text-align: center;
+    }
+
+    .methodology-scale-name {
+      display: block;
+      margin-bottom: 0.02in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 10.8pt;
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .methodology-scale-desc {
+      display: block;
+      font-size: 7.6pt;
+      line-height: 1.1;
+      color: var(--muted);
+    }
+    .field-diagnostico-titulo-resumo {
+      left: 52.3972%;
+      top: 21.4542%;
+      width: 41.3634%;
+      height: 3.078%;
+      --max-font-size: 19pt;
+      --min-font-size: 8pt;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: var(--max-font-size);
+      font-weight: 600;
+      color: #04b8c9;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .field-diagnostico-resumo {
+      left: 52.3972%;
+      top: 25.3037%;
+      width: 41.3634%;
+      height: 33.2%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 11pt;
+      font-weight: 400;
+      color: #000000;
+      text-align: justify;
+      line-height: 1.5;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+    .field-diagnostico-tabela {
+      left: 6.0459%;
+      top: 21.4542%;
+      width: 40.266%;
+      height: 33.2%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #111111;
+    }
+
+    .diagnosis-axis-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.4pt;
+      line-height: 1.15;
+    }
+
+    .diagnosis-axis-table-title {
+      display: inline-flex;
+      align-items: center;
+      height: 0.24in;
+      margin-bottom: 0.12in;
+      padding: 0 0.14in;
+      border-radius: 2px;
+      background: #111111;
+      color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 8.8pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .diagnosis-axis-table tr {
+      border-bottom: 1px solid rgba(17, 17, 17, 0.13);
+    }
+
+    .diagnosis-axis-table td {
+      padding: 0.09in 0.04in 0.08in 0;
+      vertical-align: middle;
+    }
+
+    .diagnosis-axis-name {
+      width: 58%;
+      font-size: 9.3pt;
+      font-weight: 400;
+    }
+
+    .diagnosis-axis-score {
+      width: 10%;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 13pt;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .diagnosis-axis-status-cell {
+      width: 32%;
+      text-align: right;
+      padding-right: 0;
+    }
+
+    .diagnosis-axis-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0.92in;
+      height: 0.2in;
+      padding: 0 0.12in;
+      border-radius: 999px;
+      color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .diagnosis-axis-no-score {
+      min-width: 1.18in;
+      background-color: #e6e6e6;
+      color: #111111;
+    }
+
+    .field-diagnostico-acoes {
+      left: 6.0459%;
+      top: 60.2%;
+      width: 87.7147%;
+      height: 30.8%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #111111;
+    }
+
+    .diagnosis-actions-shell {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto minmax(0, 1fr);
+      row-gap: 0.18in;
+      align-items: stretch;
+      min-height: 0;
+      border-top: 1.4pt solid #111111;
+      padding-top: 0.16in;
+      box-sizing: border-box;
+    }
+
+    .diagnosis-actions-title {
+      display: flex;
+      align-items: center;
+      gap: 0.12in;
+      color: #04b8c9;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 18pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .diagnosis-actions-title::before {
+      content: "";
+      display: block;
+      width: 0.38in;
+      height: 3pt;
+      background: #04b8c9;
+      flex: 0 0 auto;
+    }
+
+    .diagnosis-actions-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.16in;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .diagnosis-actions-list li {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      row-gap: 0.1in;
+      min-width: 0;
+      padding: 0.18in 0.16in 0.16in;
+      border: 1.2pt solid rgba(17, 17, 17, 0.18);
+      border-left: 4pt solid #04b8c9;
+      box-sizing: border-box;
+      background: rgba(4, 184, 201, 0.04);
+      overflow: hidden;
+    }
+
+    .diagnosis-actions-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.25in;
+      height: 0.25in;
+      border-radius: 50%;
+      background: #04b8c9;
+      color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 11pt;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .diagnosis-actions-content {
+      display: block;
+      min-width: 0;
+    }
+
+    .diagnosis-actions-card-title {
+      display: block;
+      margin-bottom: 0.055in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .diagnosis-actions-text {
+      display: block;
+      font-size: 10pt;
+      line-height: 1.32;
+      text-align: left;
+    }
+
+    .score-pill-large {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg, #04b8c9 0%, #049fb0 54%, #057d8c 100%);
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -16px 28px rgba(0, 70, 82, 0.22);
+      overflow: hidden;
+    }
+
+    .score-pill-title {
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .score-pill-value {
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 70pt;
+      font-weight: 600;
+      line-height: 0.92;
+      letter-spacing: 0;
+      color: #ffffff;
+    }
+
+    .score-pill-note {
+      width: 78%;
+      margin-top: 0.06in;
+      padding-top: 0.055in;
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 8.2pt;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: 0.025em;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.84);
+    }
+    .score-pill-limit {
+      display: inline-block;
+      margin-left: 0.04em;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 0.28em;
+      font-weight: 300;
+      line-height: 1;
+      vertical-align: baseline;
+      opacity: 0.78;
+    }
+
+    .axis-score-pill .score-pill-limit {
+      font-size: 0.34em;
+      font-weight: 300;
+      opacity: 0.72;
+    }
+    .field-diagnostico-radar {
+      left: 6.0459%;
+      top: 45.4577%;
+      width: 87.7147%;
+      height: 45.7485%;
+      display: block;
+      box-sizing: border-box;
+      border: 2.6pt solid #111111;
+      color: #111111;
+      overflow: visible;
+    }
+
+    .radar-box-title {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 3;
+      width: 100%;
+      height: 0.44in;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0.115in 0.18in 0;
+      background: #dedcdb;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1;
+      text-align: left;
+      text-transform: uppercase;
+      color: #111111;
+      letter-spacing: 0;
+    }
+
+    .radar-chart {
+      width: 86.83%;
+      height: 100%;
+      display: block;
+      margin: 0 auto;
+      overflow: visible;
+      transform: scale(0.95);
+      transform-origin: center bottom;
+    }
+
+
+    .radar-axis {
+      stroke: transparent;
+      stroke-width: 0;
+      vector-effect: non-scaling-stroke;
+    }
+
+
+
+
+
+        .radar-max-shadow {
+      fill: #f7f6f5;
+      stroke: none;
+    }
+
+    .radar-max-ray {
+      stroke: #ffffff;
+      stroke-width: 1pt;
+      stroke-dasharray: 7 7;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .radar-area {
+      fill: rgba(4, 184, 201, 0.24);
+      stroke: #04b8c9;
+      stroke-width: 4;
+      vector-effect: non-scaling-stroke;
+    }
+    .radar-label {
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      fill: #111111;
+    }
+
+    .radar-score-pill {
+      fill: #04b8c9;
+    }
+
+    .radar-score-text {
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      fill: #ffffff;
+    }
+
+
+
+    .field-eixo-bloco-titulo {
+      left: 8.8787%;
+      top: 19.1054%;
+      width: 48.6135%;
+      display: block;
+      overflow: visible;
+      height: auto;
+      min-height: 0;
+      max-height: 9.5%;
+      --max-font-size: 15pt;
+      --min-font-size: 10pt;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: var(--max-font-size);
+      font-weight: 600;
+      color: #04b8c9;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      line-height: 1.05;
+      white-space: normal;
+      text-transform: uppercase;
+    }
+
+    .field-eixo-texto {
+      left: 8.8787%;
+      top: 25.9471%;
+      width: 48.6135%;
+      height: 64.3051%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 10.5pt;
+      font-weight: 400;
+      color: #000000;
+      text-align: justify;
+      line-height: 1.4;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+    .field-eixo-nota {
+      left: 61.1225%;
+      top: 19.1054%;
+      width: 29.8428%;
+      height: 10.0428%;
+      display: block;
+      color: #ffffff;
+    }
+
+    .axis-score-pill {
+      height: 1.174in;
+      min-height: 1.174in;
+      margin-top: 0;
+      padding: 0.08in 0.1in 0.07in;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #f2f1f0 0%, #dedcdb 54%, #c9c6c4 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 -8px 16px rgba(90, 84, 80, 0.10);
+      color: #111111;
+    }
+
+    .axis-score-pill .score-pill-title {
+      font-size: 10.8pt;
+      letter-spacing: 0.07em;
+    }
+
+    .axis-score-pill .score-pill-value {
+      font-size: 47pt;
+      line-height: 0.82;
+    }
+
+    .axis-score-pill .score-pill-title,
+    .axis-score-pill .score-pill-value {
+      color: #111111;
+    }
+
+    .axis-score-pill .score-pill-note {
+      width: 88%;
+      margin-top: 0.045in;
+      padding-top: 0.04in;
+      border-top-color: rgba(17, 17, 17, 0.18);
+      font-size: 7.2pt;
+      font-weight: 600;
+      line-height: 1.05;
+      color: rgba(17, 17, 17, 0.66);
+    }
+
+    .field-eixo-recomendacoes {
+      left: 61.1225%;
+      top: 31.2%;
+      width: 29.8428%;
+      height: 58.6%;
+      display: block;
+      color: #111111;
+    }
+    .page[data-page="eixos_7"] .field-eixo-nota {
+      display: none;
+    }
+
+    .page[data-page="eixos_7"] .field-eixo-recomendacoes {
+      top: 19.1054%;
+      height: 64.1%;
+    }
+
+    .page.has-axis-page-link[data-page="eixos_2"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_3"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_4"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_5"] .field-eixo-recomendacoes {
+      height: 52.1%;
+    }
+
+    .field-eixo-page-link {
+      left: 61.1225%;
+      top: 84.55%;
+      width: 29.8428%;
+      height: 5.25%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 0.52in;
+      align-items: center;
+      gap: 0.11in;
+      padding: 0.055in 0.085in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: rgba(17, 17, 17, 0.72);
+    }
+
+    .axis-page-link-label {
+      display: block;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12.5pt;
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .axis-page-link-qr {
+      width: 0.52in;
+      height: 0.52in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .axis-page-link-qr img,
+    .axis-page-link-qr canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+    .field-eixo-page-link.has-two-qrs {
+      grid-template-columns: minmax(0, 1fr) 0.44in 0.44in;
+      gap: 0.075in;
+    }
+
+    .field-eixo-page-link.has-two-qrs .axis-page-link-qr {
+      width: 0.44in;
+      height: 0.44in;
+    }
+    .field-eixo-ia-note {
+      left: 61.1225%;
+      top: 84.55%;
+      width: 29.8428%;
+      height: 5.25%;
+      display: flex;
+      align-items: center;
+      padding: 0.055in 0.085in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 7.15pt;
+      line-height: 1.1;
+      text-align: left;
+      color: rgba(17, 17, 17, 0.72);
+    }
+
+
+    .axis-recommendations-title {
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #111111;
+      margin-bottom: 0.14in;
+    }
+
+    .axis-recommendations-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.105in;
+    }
+
+    .axis-recommendation-pill {
+      position: relative;
+      min-height: 0.48in;
+      padding: 0.31in 0.14in 0.095in 0.24in;
+      border: 1pt solid transparent;
+      border-radius: 10px;
+      background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #bdb9b6 0%, #c8c4c1 38%, #d8d5d3 72%, #f3f2f1 100%) border-box;
+      box-shadow: 0.025in 0.035in 0.07in rgba(120, 116, 112, 0.10);
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 9pt;
+      font-weight: 400;
+      line-height: 1.1;
+      color: #111111;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .axis-recommendation-pill::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0.075in;
+      height: 100%;
+      border-radius: 9px 0 0 9px;
+      background: #bdb9b6;
+      z-index: 1;
+    }
+
+    .axis-recommendation-number {
+      position: absolute;
+      left: 0.155in;
+      top: 0.085in;
+      z-index: 2;
+      width: 0.18in;
+      height: 0.18in;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #04b8c9;
+      color: #ffffff;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .axis-recommendation-effort {
+      position: absolute;
+      right: 0.14in;
+      top: 0.085in;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.035in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .axis-recommendation-effort-dots {
+      display: flex;
+      gap: 0.026in;
+    }
+
+    .axis-recommendation-effort-dot {
+      width: 0.07in;
+      height: 0.07in;
+      border-radius: 999px;
+      background: #dedcdb;
+    }
+
+    .axis-recommendation-effort-dot.is-active {
+      background: #04b8c9;
+    }
+
+    .axis-recommendation-pill-text {
+      position: relative;
+      z-index: 2;
+      display: block;
+    }
+
+    .axis-recommendations-empty {
+      min-height: 1.05in;
+      padding: 0.18in 0.2in 0.18in 0.24in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 9pt;
+      line-height: 1.2;
+      color: rgba(17, 17, 17, 0.78);
+    }
+
+    .axis-recommendations-empty strong {
+      display: block;
+      margin-bottom: 0.035in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111111;
+    }
+    .field-eixo-titulo {
+      left: 21.2696%;
+      top: 13.8897%;
+      width: 57.2793%;
+      height: 2.3%;
+      --max-font-size: 15pt;
+      --min-font-size: 7pt;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: var(--max-font-size);
+      font-weight: 700;
+      color: #000000;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .page-footer-line {
+      position: absolute;
+      left: 0;
+      top: 95.724%;
+      width: 100%;
+      height: 1px;
+      background: #111111;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+
+    .page-footer-light .page-footer-line {
+      background: #ffffff;
+    }
+
+    .page-footer-light .page-number {
+      color: #ffffff;
+    }
+    .page-number {
+      position: absolute;
+      left: 50%;
+      top: 96.25%;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 10pt;
+      font-weight: 500;
+      line-height: 1;
+      color: #111111;
+      pointer-events: none;
+      }
+    .debug-page-label,
+    .debug-field-label {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 7pt;
+      line-height: 1;
+      color: #ffffff;
+      background: #ed1877;
+      padding: 3px 5px;
+      pointer-events: none;
+      }
+
+    .debug-page-label {
+      top: 0;
+      left: 0;
+    }
+
+    .debug-field-label {
+      top: 0;
+      left: 0;
+      transform: none;
+      z-index: 30;
+    }
+
+    .debug-boxes .debug-page-label,
+    .debug-boxes .debug-field-label {
+      display: block;
+    }
+    .debug-boxes .field {
+      outline: 2px solid #ed1877 !important;
+      outline-offset: 0;
+    }
+
+    .debug-boxes .field::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(237, 24, 119, 0.22);
+      pointer-events: none;
+      z-index: 2;
+    }@media print {
+      html,
+      body {
+        width: 210mm;
+        background: #fff;
+      }
+
+      .report,
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+    .field-plano-acao {
+      left: 6.0459%;
+      top: 21.7707%;
+      width: 87.8475%;
+      height: 73.9778%;
+      display: block;
+      color: #ffffff;
+      overflow: visible;
+    }
+
+    .action-plan-shell {
+      width: 100%;
+      height: 100%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #ffffff;
+      overflow: visible;
+    }
+
+    .action-analysis-box {
+      position: relative;
+      border: 2pt solid rgba(255, 255, 255, 0.96);
+      padding: 0.24in 0.32in 0.2in;
+      overflow: hidden;
+    }
+
+    .action-analysis-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0.09in;
+      height: 100%;
+      background: #04b8c9;
+    }
+
+    .action-analysis-title,
+    .action-theme {
+      margin: 0;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .action-analysis-title {
+      margin-bottom: 0.1in;
+      font-size: 20pt;
+      color: #04b8c9;
+    }
+
+    .action-analysis-text {
+      margin: 0;
+      font-size: 10pt;
+      line-height: 1.32;
+      text-align: justify;
+      color: #ffffff;
+    }
+
+    .action-horizons {
+      height: 100%;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 0.24in;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    .action-horizon {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.68in 1fr;
+      grid-template-rows: 1fr auto;
+      min-width: 0;
+      min-height: 0;
+      border: 0;
+      background: rgba(255, 255, 255, 0.035);
+      overflow: visible;
+    }
+
+    .action-horizon::before {
+      content: "";
+      position: absolute;
+      left: -0.5in;
+      top: 0;
+      bottom: 0;
+      width: 0.5in;
+      background: #04b8c9;
+      z-index: 0;
+    }
+
+    .action-horizon-main {
+      display: contents;
+    }
+
+    .action-horizon-header {
+      position: relative;
+      z-index: 1;
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0.14in 0.16in;
+      border-right: 1pt solid rgba(255, 255, 255, 0.42);
+      text-align: center;
+    }
+
+    .action-period {
+      display: block;
+      margin-bottom: 0.06in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #04b8c9;
+      white-space: nowrap;
+    }
+
+    .action-theme {
+      font-size: 12.2pt;
+      line-height: 1.05;
+      color: #ffffff;
+    }
+
+    .action-items {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0.11in;
+      padding: 0.14in 0.16in 0.08in;
+      margin: 0;
+      list-style: none;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .action-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 calc((100% - 0.22in) / 3);
+      min-width: 0;
+      max-width: calc((100% - 0.22in) / 3);
+      padding: 0.1in 0.12in 0.095in;
+      border: 1pt solid rgba(255, 255, 255, 0.22);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.035) 62%, rgba(4, 184, 201, 0.045));
+      box-shadow:
+        0 0 0.045in rgba(4, 184, 201, 0.13),
+        0.022in 0.028in 0.055in rgba(0, 0, 0, 0.24),
+        inset 0.012in 0.012in 0.03in rgba(255, 255, 255, 0.13),
+        inset -0.012in -0.012in 0.04in rgba(0, 0, 0, 0.16);
+      border-radius: 8px;
+      font-size: 8.2pt;
+      line-height: 1.15;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .action-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(4,184,201,0.18), rgba(255,255,255,0));
+    }
+    .page[data-page="plano_acao"] .page-footer-line,
+    .page[data-page="plano_acao"] .page-number {
+      display: none !important;
+    }
+    .action-recommendation-title {
+      display: block;
+      --base-font-size: 11.2pt;
+      --min-font-size: 5.8pt;
+      max-height: 3em;
+      margin-bottom: 0.06in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: var(--base-font-size);
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #04b8c9;
+      overflow: hidden;
+    }
+
+    .action-recommendation-motive {
+      display: block;
+      --base-font-size: 8.6pt;
+      --min-font-size: 5.6pt;
+      flex: 1 1 auto;
+      min-height: 0;
+      font-size: var(--base-font-size);
+      line-height: 1.1;
+      color: rgba(255, 255, 255, 0.82);
+      overflow: hidden;
+    }
+
+    .action-result {
+      position: relative;
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: 0.1in 0.16in 0.12in;
+      border-top: 1pt solid rgba(255, 255, 255, 0.42);
+      font-size: 8.8pt;
+      line-height: 1.1;
+      color: #ffffff;
+      background: rgba(4, 184, 201, 0.12);
+      overflow: hidden;
+    }
+
+    .action-result strong {
+      display: block;
+      flex: 0 0 auto;
+      margin-bottom: 0.05in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #04b8c9;
+    }
+
+    .action-result-text {
+      display: block;
+      --base-font-size: 8.8pt;
+      --min-font-size: 5.6pt;
+      flex: 1 1 auto;
+      min-height: 0;
+      font-size: var(--base-font-size);
+      line-height: 1.1;
+      overflow: hidden;
+    }
+    body.debug-boxes .action-period,
+    body.debug-boxes .action-theme,
+    body.debug-boxes .action-recommendation-title,
+    body.debug-boxes .action-recommendation-motive,
+    body.debug-boxes .action-result-text {
+      position: relative;
+      outline: 1.5px solid #ed1877;
+      outline-offset: -1.5px;
+      background-color: rgba(237, 24, 119, 0.16);
+    }
+
+    body.debug-boxes .action-period::after,
+    body.debug-boxes .action-theme::after,
+    body.debug-boxes .action-recommendation-title::after,
+    body.debug-boxes .action-recommendation-motive::after,
+    body.debug-boxes .action-result-text::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 4;
+      padding: 2px 5px;
+      background: #ed1877;
+      color: #ffffff;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: none;
+      pointer-events: none;
+    }
+
+    body.debug-boxes .action-period::after {
+      content: "horizonteTempo";
+    }
+
+    body.debug-boxes .action-theme::after {
+      content: "tema";
+    }
+
+    body.debug-boxes .action-recommendation-title::after {
+      content: "tituloRecomendacao";
+    }
+
+    body.debug-boxes .action-recommendation-motive::after {
+      content: "motivoRecomendacao";
+    }
+
+    body.debug-boxes .action-result-text::after {
+      content: "resultadoEsperado";
+    }</style>
+</head>
+<body>  <main class="report" id="report"></main>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    /* =========================================================
+       SECAO 1: ASSETS / PAGINAS
+       Trocar caminhos locais por URLs online quando o relatorio
+       passar a ser carregado pelo n8n/GitHub/hospedagem final.
+       ========================================================= */
+    const ASSETS = {
+      showDebugBoxes: false,
+      pagesBasePath: "",
+      // Os PNGs finais ficam diretamente em assets/paginas/.
+      pages: [
+        {
+          id: "capa",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365955/capa_yox57u.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "nomeMedico",
+              className: "field-name",
+              type: "fit-text"
+            },
+            {
+              id: "dataRelatorio",
+              className: "field-date",
+              type: "fit-text"
+            }
+          ]
+        },
+        {
+          id: "o_que_e",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365958/o_que_e_opd0ev.png",
+          allowFlowRepeat: true,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "textoPrincipal",
+              className: "field-o-que-e-col-1",
+              type: "markdown"
+            },
+            {
+              id: "textoPrincipalContinua",
+              className: "field-o-que-e-col-2",
+              type: "markdown"
+            },
+            {
+              id: "tagline",
+              className: "field-o-que-e-tagline",
+              type: "markdown-fit-text"
+            }
+          ]
+        },
+        {
+          id: "metodologia",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365957/metodologia_gkk3gt.png",
+          footerTheme: "light",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "conteudo",
+              className: "field-metodologia",
+              type: "methodology-page"
+            }
+          ]
+        },
+        {
+          id: "diagnostico",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/diagnostico_vckspz.png",
+          allowFlowRepeat: true,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloResumo",
+              className: "field-diagnostico-titulo-resumo",
+              type: "fit-text"
+            },
+            {
+              id: "resumo",
+              className: "field-diagnostico-resumo",
+              type: "markdown"
+            },
+            {
+              id: "diagnosticoTabela",
+              className: "field-diagnostico-tabela",
+              type: "diagnosis-axis-table"
+            },
+            {
+              id: "acoesAgora",
+              className: "field-diagnostico-acoes",
+              type: "diagnosis-actions"
+            }
+          ]
+        },
+        {
+          id: "eixos_1",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            }
+          ]
+        },
+        {
+          id: "eixos_2",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
+            }
+          ]
+        },
+        {
+          id: "eixos_3",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
+            }
+          ]
+        },
+        {
+          id: "eixos_4",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
+            }
+          ]
+        },
+        {
+          id: "eixos_5",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
+            }
+          ]
+        },
+        {
+          id: "eixos_6",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            }
+          ]
+        },
+        {
+          id: "eixos_7",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365956/eixos_ghvpvc.png",
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "tituloEixo",
+              className: "field-eixo-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "tituloBloco",
+              className: "field-eixo-bloco-titulo",
+              type: "fit-text"
+            },
+            {
+              id: "textoPrincipal",
+              className: "field-eixo-texto",
+              type: "markdown"
+            },
+            {
+              id: "notaEixo",
+              className: "field-eixo-nota",
+              type: "axis-score"
+            },
+            {
+              id: "recomendacoes",
+              className: "field-eixo-recomendacoes",
+              type: "axis-recommendations"
+            },
+            {
+              id: "notaQualitativaIA",
+              className: "field-eixo-ia-note",
+              type: "axis-qualitative-note"
+            }
+          ]
+        },
+        {
+          id: "plano_acao",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365958/plano_acao_u3v2hp.png",
+          footerTheme: "light",
+          allowFlowRepeat: true,
+          width: 2481,
+          height: 3508,
+          fields: [
+            {
+              id: "planoAcao",
+              className: "field-plano-acao",
+              type: "action-plan"
+            }
+          ]
+        },
+        {
+          id: "contra_capa",
+          file: "https://res.cloudinary.com/dblwlsuqv/image/upload/v1786365958/contra_capa_g3g5f6.png",
+          hideFooter: true,
+          allowFlowRepeat: false,
+          width: 2481,
+          height: 3508,
+          fields: []
+        }
+      ]
+    };
+    /* =========================================================
+       SECAO 2: JSON FIXO DO RELATORIO
+       Conteudos padrao que podem aparecer em todos os relatorios,
+       como introducao, explicacoes e informacoes da MEV Brasil.
+       ========================================================= */
+    const FIXED_DATA = {
+      empresa: {
+        nome: "MEV Brasil",
+        descricao: "Treinamento para medicos se tornarem mais empreendedores."
+      },
+      relatorio: {
+        titulo: "Analise de Presenca Digital",
+        introducao: "Este relatorio apresenta uma leitura estrategica da presença digital do medico, considerando autoridade, clareza de posicionamento, reputacao e oportunidades de melhoria."
+      },
+      paginas: {
+        o_que_e: {
+          textoPrincipal: `**A presença digital passou a fazer parte da decisão de quem procura atendimento médico.** Mesmo quando existe uma indicação, é comum que o paciente pesquise o nome, confirme a especialidade, verifique a região de atendimento e procure informações que transmitam segurança antes de entrar em contato.
+
+Quando essa busca começa pela especialidade, o desafio é ainda maior: **ser encontrado por quem ainda não conhece o médico.** Por isso, uma presença digital forte precisa cumprir duas funções ao mesmo tempo: confirmar a identidade de quem já recebeu uma indicação e facilitar a descoberta por novos pacientes.
+
+Essa presença não depende de um único canal. **Ela é construída pela soma das informações que aparecem no Google, no Google Meu Negócio, no Instagram, no site, em respostas geradas por inteligência artificial, nos meios de contato e também em conteúdos em vídeo.**
+
+Quanto mais claras, coerentes e atualizadas essas informações estiverem, mais fácil se torna para o paciente entender quem é o médico, onde atende, quais são suas áreas de atuação e como dar o próximo passo.
+
+**Este CheckUp organiza essa leitura em sete eixos para mostrar o que já funciona bem, onde existem limitações e quais pontos merecem atenção** para tornar essa presença mais clara, consistente e fácil de encontrar.`.trim(),
+          textoPrincipalContinua: `**Por outro lado, as análises e recomendações deste CheckUp devem ser entendidas como pontos de reflexão, e não como verdades absolutas.** Cada profissional possui uma realidade e uma estratégia diferentes, por isso é importante avaliar o que realmente faz sentido para sua atuação.
+
+As recomendações podem contribuir para uma presença digital mais clara e consistente, mas sua aplicação, isoladamente, **não garante uma evolução completa**. Da mesma forma, **não é necessário estar presente em todas as plataformas**: novos canais só fazem sentido quando estão alinhados à estratégia do profissional.
+
+As percepções deste material partem de uma **leitura externa dos canais e informações disponíveis no momento da análise**. Alguns elementos podem ter contextos ou particularidades que não são totalmente visíveis durante a avaliação.
+
+Por fim, o ambiente digital está em **constante mudança**. Resultados de busca e percepções podem variar ao longo do tempo. Mais importante do que seguir todas as recomendações é **manter consistência e evoluir aquilo que realmente fizer sentido para sua prática profissional**.`.trim(),          tagline: "O CHECKUP Estratégico é uma ferramenta essencial para consultórios."
+        },
+        metodologia: {
+          titulo: "COMO CADA\nEIXO É AVALIADO?",
+          introducao: "Cada eixo recebe uma leitura própria, baseada em critérios objetivos de presença, clareza, consistência e facilidade de descoberta. A escala abaixo ajuda a interpretar o estágio atual de cada canal, sem formar nota geral ou média ponderada.",
+          escala: [
+            { nota: "9-10", nome: "Referência", descricao: "Presença forte e competitiva.", cor: "#0fbf72" },
+            { nota: "7-8", nome: "Bom", descricao: "Canal bem estruturado, com poucos ajustes relevantes.", cor: "#54c96f" },
+            { nota: "5-6", nome: "Regular", descricao: "Base funcional, mas ainda com pontos importantes a desenvolver.", cor: "#d8c846" },
+            { nota: "3-4", nome: "Fraco", descricao: "Presença limitada ou pouco competitiva.", cor: "#f09a3d" },
+            { nota: "1-2", nome: "Crítico", descricao: "Canal existente, mas com problemas relevantes.", cor: "#ef5b48" },
+            { nota: "0", nome: "Inexistente", descricao: "Canal ou presença não identificada.", cor: "#8f8f8f" }
+          ],
+        }
+      }
+    };
+
+        /* =========================================================
+       SECAO 3: JSON VARIAVEL DO RELATORIO
+       O n8n deve substituir o marcador abaixo pelo JSON final.
+       ========================================================= */
+    const REPORT_INPUT = [
+  {
+    "id": 16,
+    "Nome do aluno": "Valeria Cristiane Galvão Vallesquino",
+    "Cidade": "Americana",
+    "Especialidade": "Medicina do trabalho",
+    "Resumo_plano": {
+      "diagnostico_geral": "Valeria possui boa visibilidade em Americana quando buscada por especialidade, mas enfrenta dificuldades na confirmação de dados pelo nome. O principal desafio reside na ausência de canais oficiais e na divergência de informações geográficas entre portais médicos. Com uma imagem de apresentação acolhedora no Instagram, o foco deve ser a criação de um canal local centralizado e a padronização de contatos para facilitar o agendamento direto e seguro por parte dos pacientes na região de atuação.",
+      "fazer_agora": [
+        {
+          "titulo": "Revisar a biografia do Instagram",
+          "motivo": "A ausência de dados básicos na apresentação inicial impede que o paciente identifique rapidamente a especialidade e a localidade de atendimento."
+        },
+        {
+          "titulo": "Padronizar nome e cidade nos perfis",
+          "motivo": "A divergência de dados entre Americana e Campinas gera confusão no paciente e dificulta a validação da identidade médica nas pesquisas online."
+        },
+        {
+          "titulo": "Atualizar o link de contato no Instagram",
+          "motivo": "Oferecer um caminho direto para agendamento remove barreiras de comunicação e facilita a conversão de interessados em novos pacientes atendidos."
+        }
+      ],
+      "plano_acao": [
+        {
+          "periodo": "30 dias",
+          "tema": "Organizar a base",
+          "acoes": [
+            {
+              "titulo": "Criar perfil no Google Meu Negócio",
+              "motivo": "Ter um canal oficial centraliza endereço, horários e contatos, permitindo que o paciente localize o atendimento com facilidade em Americana."
+            },
+            {
+              "titulo": "Alinhar informações de agendamento",
+              "motivo": "Padronizar o caminho de contato em todos os canais administráveis evita que o paciente encontre links ou números de telefone desatualizados."
+            }
+          ],
+          "resultado_esperado": "A centralização de informações básicas e a correção de dados divergentes permitirão que o paciente encontre e valide o local de atendimento com segurança, reduzindo obstáculos na busca pelo nome da profissional na região de Americana."
+        },
+        {
+          "periodo": "60 dias",
+          "tema": "Fortalecer os canais",
+          "acoes": [
+            {
+              "titulo": "Considerar a criação de um site",
+              "motivo": "Um site próprio funciona como uma base sólida para explicar a especialidade e reunir todas as informações de contato sob controle da profissional."
+            },
+            {
+              "titulo": "Iniciar perfil profissional no YouTube",
+              "motivo": "O uso de vídeos ajuda o paciente a conhecer a comunicação da médica e entender melhor os procedimentos da medicina do trabalho antes da consulta."
+            }
+          ],
+          "resultado_esperado": "A expansão para canais próprios e audiovisuais oferecerá mais profundidade à presença digital, permitindo que interessados conheçam a forma de trabalho e a especialidade de maneira mais detalhada e profissional em Americana."
+        },
+        {
+          "periodo": "90 dias",
+          "tema": "Criar continuidade",
+          "acoes": [
+            {
+              "titulo": "Aumentar a frequência no Instagram",
+              "motivo": "A publicação regular de orientações sobre a especialidade mantém o perfil atualizado e acolhedor para quem busca suporte especializado na rede social."
+            },
+            {
+              "titulo": "Produzir vídeo curto de apresentação",
+              "motivo": "Um vídeo explicando a atuação e como agendar consultas humaniza o contato digital e esclarece dúvidas frequentes de novos pacientes e empresas."
+            }
+          ],
+          "resultado_esperado": "A manutenção de uma rotina de publicações e a oferta de conteúdos educativos consolidarão a presença digital, garantindo que os canais permaneçam ativos, informativos e prontos para acolher novos pacientes de maneira contínua."
+        }
+      ]
+    },
+    "Google": {
+      "titulo": "Bem encontrada pela especialidade, mas com dados divergentes pelo nome",
+      "texto": "O Google serve para confirmar indicações ou encontrar especialistas. Ele funciona como o primeiro contato para validar dados ou descobrir novas opções de atendimento na região.\\n\\nValeria Cristiane Galvão Vallesquino aparece nos resultados, mas a identificação tem obstáculos. Portais citam a médica em outra cidade e nomes parecidos surgem na página, gerando dúvidas para quem busca atendimento em Americana. Sem site profissional ou perfil no Google Meu Negócio, a confirmação de endereço depende de fontes externas. Isso torna a procura pelo nome menos precisa que a busca por categoria.\\n\\nNas pesquisas por especialidade em Americana, a profissional aparece em páginas institucionais e portais. Quem busca medicina do trabalho encontra o nome da médica associado a empresas e plataformas que lideram os resultados. Isso faz com que novos pacientes cheguem ao serviço sem conhecê-la antes. O contato ocorre por intermediários e não por canais de controle individual.\\n\\nA facilidade de descoberta pela área de atuação na cidade é positiva. Já a clareza na busca pelo nome demanda atenção, pois dados de outras cidades e homônimos dispersam o paciente. Ajustar a uniformidade nos perfis disponíveis ajudará a guiar o interessado com clareza. O foco deve ser a integração dos locais de atendimento para evitar enganos no agendamento.",
+      "nota": 6,
+      "recomendacoes": [
+        {
+          "texto": "Revisar o nome profissional utilizado nas páginas e perfis administráveis que aparecem no Google, adotando um formato uniforme. O ajuste facilita a confirmação da identidade e reduz a possibilidade de confusão.",
+          "esforco": 1
+        },
+        {
+          "texto": "Revisar a informação sobre a cidade de atuação nos canais administráveis que aparecem na pesquisa pelo nome, mantendo a orientação compatível entre eles para evitar respostas diferentes.",
+          "esforco": 1
+        },
+        {
+          "texto": "Revisar no site da clínica a apresentação da médica, quando houver acesso de edição ou possibilidade real de solicitar a atualização, destacando especialidade, atuação e local de atendimento. O ajuste ajuda a deixar mais clara a relação entre o nome individual e a clínica.",
+          "esforco": 2
+        }
+      ]
+    },
+    "GMN": {
+      "titulo": "Google Meu Negócio ainda não utilizado como canal de descoberta local",
+      "texto": "O Google Meu Negócio ajuda pacientes a localizar o atendimento, consultar horários e encontrar médicos por especialidade em sua região. Esse canal facilita o acesso a dados práticos e auxilia na escolha de um profissional ao reunir detalhes para o agendamento e o deslocamento.\\n\\nDurante a análise, não foi identificado um perfil individual para Valeria Cristiane Galvão Vallesquino. Ter uma página própria pode tornar a comunicação direta e centralizar as informações básicas sobre o atendimento em um só lugar, funcionando como uma referência prática para quem pesquisa pelo nome da profissional.\\n\\nAo pesquisar pela especialidade em Americana, os resultados concentram-se em empresas de saúde ocupacional e clínicas de segurança do trabalho. O interessado encontra opções corporativas que dominam a vitrine local, sendo que o perfil individual pode ser um meio complementar de ser localizado por pacientes da cidade.\\n\\nA criação de um perfil no GMN oferece uma maneira simples de apresentar a atuação da médica e facilitar o contato. Atualmente, a profissional pode utilizar esse canal para ampliar os meios de ser encontrada. Essa presença local ajuda a compor uma referência útil para quem busca serviços de saúde na região.",
+      "nota": 0,
+      "recomendacoes": [
+        {
+          "texto": "Considerar a criação de um perfil individual no Google Meu Negócio para reunir endereço, horários, contato e informações básicas sobre o atendimento. Esse canal pode facilitar a localização e ampliar as formas de descoberta na região.",
+          "esforco": 3
+        }
+      ]
+    },
+    "Instagram": {
+      "titulo": "Perfil com excelente imagem de apresentação e oportunidade de informar sobre a especialidade",
+      "texto": "O Instagram funciona hoje como uma vitrine para o relacionamento entre o médico e quem busca apoio especializado. Esse espaço permite apresentar o modo de trabalho, retirar dúvidas comuns e criar uma proximidade inicial que ajuda muito na escolha do paciente antes mesmo da conversa no consultório ou da marcação de uma consulta.\\n\\nValeria Cristiane Galvão Vallesquino possui um perfil com uma imagem de apresentação muito acolhedora, que mostra simpatia e abertura para o diálogo. A conta ainda precisa de informações na descrição inicial, como a área de atuação e a cidade, para que o visitante perceba rapidamente o serviço prestado em Americana.\\n\\nA amostra analisada não apresenta publicações ou materiais que expliquem os temas da medicina do trabalho ou as situações acompanhadas pela profissional em seu dia a dia. A falta de um endereço para agendamento ou detalhes complementares também representa um ponto a ser preenchido para orientar quem visita a página em busca de suporte qualificado.\\n\\nO perfil conta com uma ótima base visual na foto de perfil, mas requer a inserção de dados sobre o trabalho e a produção constante de materiais informativos. Ao organizar a biografia e publicar as primeiras orientações sobre a especialidade, a página passará a cumprir seu papel de informar e acolher quem busca pelo atendimento realizado pela profissional.",
+      "nota": 4,
+      "recomendacoes": [
+        {
+          "texto": "Revisar a biografia para apresentar especialidade, cidade de atendimento e uma explicação simples sobre o trabalho. O texto deve ajudar o paciente a entender rapidamente se aquele perfil corresponde ao que procura.",
+          "esforco": 1
+        },
+        {
+          "texto": "Revisar o link da bio para direcionar o paciente a um caminho claro de contato ou agendamento. O destino deve confirmar que pertence ao profissional e explicar o próximo passo sem etapas desnecessárias.",
+          "esforco": 2
+        },
+        {
+          "texto": "Aumentar a frequência de publicações profissionais, mantendo uma continuidade compatível com a rotina do profissional. A presença regular ajuda a manter o perfil atualizado para quem o visita.",
+          "esforco": 4
+        }
+      ]
+    },
+    "Site": {
+      "titulo": "Site profissional não encontrado e oportunidade de criar um espaço próprio",
+      "texto": "Nas pesquisas analisadas, não foi encontrado um site profissional de Valeria Cristiane Galvão Vallesquino. Um site funciona como espaço próprio para apresentar a medicina do trabalho, explicar a forma de atendimento e reunir de maneira organizada os meios de contato para os pacientes.\n\nA criação desse canal pode complementar as redes sociais e os portais médicos já utilizados pela profissional. Ter um endereço oficial na internet ajuda a reunir informações sobre a atuação em Americana e reforça a ligação do nome da médica a um ambiente que ela mesma gerencia.",
+      "nota": 0,
+      "recomendacoes": [
+        {
+          "texto": "Considerar a criação de um site profissional para apresentar a especialidade, explicar o atendimento e reunir informações de contato em um espaço próprio. Esse canal pode complementar os demais meios já utilizados pelo profissional.",
+          "esforco": 4
+        },
+        {
+          "texto": "Após a criação do site, organizar uma página inicial com apresentação do profissional, especialidade, principais motivos de procura e caminho para contato. Essa estrutura oferece ao paciente uma visão clara do atendimento.",
+          "esforco": 3
+        },
+        {
+          "texto": "Após a criação do site, preparar textos simples sobre a especialidade, a forma de atendimento e as dúvidas mais comuns dos pacientes. Esses conteúdos ajudam a dar contexto a quem conhece o profissional pela primeira vez.",
+          "esforco": 3
+        }
+      ]
+    },
+    "Video": {
+      "titulo": "TikTok e YouTube ainda não utilizados profissionalmente",
+      "texto": "Vídeos em plataformas digitais ajudam o paciente a conhecer a comunicação do médico antes da consulta. Através de conteúdos audiovisuais, o interessado nota a postura e a clareza nas explicações, o que auxilia na percepção inicial sobre o atendimento. Esse formato facilita o entendimento de temas técnicos e traz proximidade ao médico no ambiente digital.\\n\\nValeria Cristiane Galvão Vallesquino não possui perfis profissionais identificados no TikTok ou no YouTube. A ausência desses canais significa que o interessado em Medicina do Trabalho em Americana não encontra registros em vídeo sobre a atuação da médica. O uso do YouTube ou TikTok aproxima o profissional de quem busca informações e orientações de saúde.\\n\\nUm canal no YouTube pode ser utilizado para responder dúvidas frequentes sobre exames admissionais ou normas regulamentadoras. Com vídeos curtos, a médica consegue descrever a rotina do consultório e as orientações para empresas e trabalhadores. Esse conteúdo organiza as informações e serve como um recurso para quem deseja conhecer a forma de atendimento.\\n\\nAtualmente, a presença profissional em vídeo não é explorada, o que deixa de aproveitar um canal de contato visual com o público. Sem conteúdos no TikTok ou no YouTube, a comunicação não utiliza a imagem para criar uma relação inicial com quem busca o serviço. Iniciar a produção de vídeos em um desses canais ajuda a apresentar o trabalho de maneira mais direta e organizada.",
+      "nota": 0,
+      "recomendacoes": [
+        {
+          "texto": "Considerar a criação de um perfil profissional no YouTube para apresentar a especialidade, responder dúvidas frequentes e mostrar a forma de comunicação do profissional.",
+          "esforco": 3
+        },
+        {
+          "texto": "Criar um vídeo curto de apresentação explicando especialidade, cidade de atendimento, principais motivos de procura e como iniciar o contato. Esse conteúdo ajuda quem encontra o perfil pela primeira vez.",
+          "esforco": 2
+        }
+      ]
+    },
+    "NAP": {
+      "titulo": "Divergências de localização e falta de contato funcional dificultam a confirmação do atendimento",
+      "texto": "NAP indica a harmonia entre nome, local de atendimento e meios de contato. Manter esses dados parecidos em todas as fontes ajuda quem busca seus serviços a saber quem você é, onde encontrá-la e como falar com sua equipe sem gerar dúvidas.\\n\\nValeria Cristiane Galvão Vallesquino aparece em portais de terceiros e redes sociais voltadas ao público de saúde. Embora a especialidade apareça com clareza, não foi localizado um perfil no Google Meu Negócio para servir como referência oficial. Sem esse canal, os dados ficam espalhados entre diretórios médicos e registros empresariais, o que dificulta a confirmação de uma base de atendimento própria.\\n\\nExiste uma diferença entre as cidades informadas, com registros apontando para Americana e outros para Campinas sem explicar se existem unidades distintas. O site profissional indicado não está funcionando, o que interrompe o caminho de quem busca agendamento. As fontes disponíveis não apresentam um número de telefone ou WhatsApp de fácil acesso, o que faz quem procura precisar navegar por vários endereços digitais para tentar uma resposta.\\n\\nA identificação profissional funciona, mas a pouca clareza sobre o local de trabalho atual e a falta de um canal de contato ativo trazem dificuldades. Organizar esses dados em um local central ajudaria a entender onde Dra. Valeria atende. Ajustar a cidade correta e restabelecer um meio de comunicação direto são as ações que precisam de atenção no momento.",
+      "nota": 4,
+      "recomendacoes": [
+        {
+          "texto": "Criar um perfil no Google Meu Negócio para oferecer ao paciente uma referência central de nome, localização e contato.",
+          "esforco": 4
+        },
+        {
+          "texto": "Alinhar nos canais profissionais a informação sobre cidade e região de atendimento, mantendo clara a localização atual do profissional.",
+          "esforco": 1
+        },
+        {
+          "texto": "Alinhar nos canais administráveis a orientação sobre contato e agendamento, deixando claro qual caminho deve ser utilizado em cada situação.",
+          "esforco": 1
+        }
+      ]
+    },
+    "IA": {
+      "titulo": "Prontidão limitada para ser encontrada em pesquisas por inteligência artificial",
+      "texto": "Foi feita uma pesquisa simulando a pergunta de um paciente sobre médicos de medicina do trabalho em Americana. A resposta pode mudar conforme o momento e o local de quem pergunta. Não ser citado em uma busca específica não mede a qualidade médica, mas mostra como os dados digitais são captados e distribuídos por esses sistemas agora.\n\nNa resposta analisada, Valeria Cristiane Galvão Vallesquino não apareceu entre os nomes indicados. Isso sugere que outros sinais foram mais fáceis de associar à especialidade na cidade. A ausência indica que o volume de dados públicos conectando seu nome à região ainda é baixo para gerar uma recomendação direta por meio dessas ferramentas de consulta.\n\nA prontidão para ser encontrada depende de dados claros. Há hoje uma divergência entre Americana e Campinas em portais médicos, o que dificulta a leitura dos sistemas de busca. A falta de um site ativo e o perfil social sem conteúdo prejudicam a confirmação de sua atuação profissional. Detalhes escassos sobre áreas atendidas limitam o reconhecimento sobre sua presença na região.\n\nO nível de prontidão é reduzido e as fontes públicas precisam de maior concordância entre si. O ponto principal de evolução é unificar os dados sobre a localidade e detalhar os serviços prestados em canais próprios. Ao tornar nítida a relação entre nome, especialidade e cidade, as condições para ser citada em pesquisas futuras aumentam.",
+      "recomendacoes": [
+        {
+          "texto": "Revisar nos canais administráveis a apresentação da cidade de atendimento, mantendo essa informação compatível quando houver divergência que prejudique a associação pública do profissional.",
+          "esforco": 2
+        },
+        {
+          "texto": "Revisar os perfis externos administráveis já existentes e completar apenas as informações profissionais confirmadas que estejam ausentes ou divergentes.",
+          "esforco": 3
+        }
+      ]
+    },
+    "data_relatorio": "Agosto, 2026"
+  }
+];
+
+    const FINAL_AXIS_CONFIG = [
+      {
+        sourceKey: "Google",
+        pageId: "eixos_1",
+        tituloEixo: "Google",
+        radarNome: "Google"
+      },
+      {
+        sourceKey: "GMN",
+        pageId: "eixos_2",
+        tituloEixo: "Google Meu Negócio",
+        radarNome: "Google Meu Negócio"
+      },
+      {
+        sourceKey: "Site",
+        pageId: "eixos_3",
+        tituloEixo: "Site profissional",
+        radarNome: "Site profissional"
+      },
+      {
+        sourceKey: "Instagram",
+        pageId: "eixos_4",
+        tituloEixo: "Instagram",
+        radarNome: "Instagram"
+      },
+      {
+        sourceKey: "Video",
+        pageId: "eixos_5",
+        tituloEixo: "Redes Sociais de Vídeo",
+        radarNome: "Redes Sociais de Vídeo"
+      },
+      {
+        sourceKey: "NAP",
+        pageId: "eixos_6",
+        tituloEixo: "Canais de Contato (NAP)",
+        radarNome: "Canais de Contato (NAP)"
+      },
+      {
+        sourceKey: "IA",
+        pageId: "eixos_7",
+        tituloEixo: "Prontidão para IA",
+        radarNome: "Prontidão para IA",
+        qualitativeOnly: true
+      }
+    ];
+    function firstReportRecord(rawJson) {
+      if (Array.isArray(rawJson)) {
+        return rawJson[0] || {};
+      }
+      return rawJson || {};
+    }
+
+    function normalizeLinkList(value) {
+      if (!value) return [];
+      const values = Array.isArray(value) ? value : [value];
+      return values
+        .flatMap((item) => typeof item === "string" ? item.split(/[;,\n]+/) : [item])
+        .map((item) => String(item || "").trim())
+        .filter(Boolean);
+    }
+
+    function getObjectValue(object, keys) {
+      if (!object || typeof object !== "object") return undefined;
+      for (const key of keys) {
+        if (Object.prototype.hasOwnProperty.call(object, key)) return object[key];
+      }
+      return undefined;
+    }
+
+    function getAxisPageLinks(axisData, linksData, axis) {
+      const axisLinkKeys = [
+        axis.sourceKey,
+        axis.pageId,
+        axis.tituloEixo,
+        axis.radarNome,
+        axis.linkKey,
+        axis.linkAlias,
+        axis.sourceKey && axis.sourceKey.toLowerCase(),
+        axis.sourceKey === "Instagram" ? "instagram" : "",
+        axis.sourceKey === "Instagram" ? "Instagra" : "",
+        axis.sourceKey === "Video" ? "video" : "",
+        axis.sourceKey === "Site" ? "site" : ""
+      ].filter(Boolean);
+      const linksFromDedicatedField = getObjectValue(linksData, axisLinkKeys);
+      const linksFromAxisData = getObjectValue(axisData, [
+        "paginaAnalisada",
+        "pagina_analisada",
+        "pagina analisada",
+        "linkPagina",
+        "link_pagina",
+        "linkAnalisado",
+        "link_analisado",
+        "link",
+        "links",
+        "url",
+        "urls",
+        "site",
+        "instagram",
+        "gmn",
+        "youtube",
+        "YouTube",
+        "tiktok",
+        "TikTok"
+      ]);
+
+      return [
+        ...normalizeLinkList(linksFromDedicatedField),
+        ...normalizeLinkList(linksFromAxisData)
+      ];
+    }
+
+    function normalizeRecommendations(recommendations) {
+      return Array.isArray(recommendations) ? recommendations.map((item) => ({
+        texto: item && item.texto ? item.texto : "",
+        esforco: item && item.esforco !== undefined ? item.esforco : 0
+      })) : [];
+    }
+
+    function normalizeFinalReportData(rawJson) {
+      const source = firstReportRecord(rawJson);
+      const summaryData = source.Resumo_plano || source.resumo_plano || source;
+      const linksData = source.link || source.links || source.Link || source.Links || {};
+      const fazerAgora = Array.isArray(summaryData.fazer_agora) ? summaryData.fazer_agora : (Array.isArray(summaryData.acoesAgora) ? summaryData.acoesAgora : []);
+      const planoAcao = Array.isArray(summaryData.plano_acao) ? summaryData.plano_acao : [];
+      const pages = {};
+
+      FINAL_AXIS_CONFIG.forEach((axis) => {
+        const axisData = source[axis.sourceKey] || {};
+        pages[axis.pageId] = {
+          tituloEixo: axis.tituloEixo,
+          tituloBloco: axisData.titulo || "",
+          textoPrincipal: axisData.texto || "",
+          notaEixo: axis.qualitativeOnly ? "" : (axisData.nota !== undefined ? axisData.nota : ""),
+          recomendacoes: normalizeRecommendations(axisData.recomendacoes),
+          paginaAnalisada: getAxisPageLinks(axisData, linksData, axis)
+        };
+      });
+
+      pages.diagnostico = {
+        tituloResumo: "Diagnóstico geral",
+        resumo: summaryData.diagnostico_geral || "",
+        acoesAgora: fazerAgora,
+        radarEixos: {
+          escalaMaxima: 10,
+          eixos: FINAL_AXIS_CONFIG.map((axis) => {
+            const axisData = source[axis.sourceKey] || {};
+            return {
+              nome: axis.radarNome,
+              nota: axisData.nota !== undefined ? axisData.nota : 0,
+              qualitativeOnly: Boolean(axis.qualitativeOnly)
+            };
+          })
+        }
+      };
+
+      pages.plano_acao = {
+        planoAcao: {
+          horizontes: planoAcao
+        }
+      };
+
+      pages.capa = {
+        nomeMedico: source["Nome do aluno"] || source.nome || source.Nome || "",
+        dataRelatorio: source.data_relatorio || ""
+      };
+
+      return {
+        medico: {
+          nome: source["Nome do aluno"] || source.nome || source.Nome || ""
+        },
+        relatorio: {
+          data: source.data_relatorio || ""
+        },
+        paginas: pages
+      };
+    }
+
+    const VARIABLE_DATA = normalizeFinalReportData(REPORT_INPUT);
+    const REPORT_DATA = {
+      ...FIXED_DATA,
+      ...VARIABLE_DATA,
+      empresa: {
+        ...FIXED_DATA.empresa,
+        ...VARIABLE_DATA.empresa
+      },
+      relatorio: {
+        ...FIXED_DATA.relatorio,
+        ...VARIABLE_DATA.relatorio
+      },
+      paginas: {
+        ...FIXED_DATA.paginas,
+        ...VARIABLE_DATA.paginas
+      }
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderInlineMarkdown(value) {
+      return escapeHtml(value)
+        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    }
+
+    function normalizeMarkdownBreaks(value) {
+      return String(value || "")
+        .replace(/\\r\\n/g, "\n")
+        .replace(/\\r/g, "\n")
+        .replace(/\\n/g, "\n")
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n");
+    }
+
+    function renderBasicMarkdown(value) {
+      return normalizeMarkdownBreaks(value)
+        .split(/\n{2,}/)
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean)
+        .map((paragraph) => {
+          const lines = paragraph.split(/\n/).map(renderInlineMarkdown).join("<br>");
+          return "<p>" + lines + "</p>";
+        })
+        .join("");
+    }
+    function getFieldValue(pageId, fieldId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      if (pageData && Object.prototype.hasOwnProperty.call(pageData, fieldId)) {
+        return pageData[fieldId];
+      }
+      return "";
+    }
+
+    function positionDebugFieldLabel(field, label) {
+      label.style.left = field.offsetLeft + "px";
+      label.style.top = Math.max(0, field.offsetTop - 16) + "px";
+    }
+    function withDebugLabelsHidden(callback) {
+      const labels = document.querySelectorAll(".debug-page-label, .debug-field-label");
+      labels.forEach((label) => {
+        label.dataset.previousDisplay = label.style.display;
+        label.style.display = "none";
+      });
+
+      try {
+        callback();
+      } finally {
+        labels.forEach((label) => {
+          label.style.display = label.dataset.previousDisplay || "";
+          delete label.dataset.previousDisplay;
+        });
+      }
+    }
+    function fitTextToBox(field) {
+      const computed = window.getComputedStyle(field);
+      const maxFontSize = parseFloat(computed.getPropertyValue("--max-font-size")) || 72;
+      const minFontSize = parseFloat(computed.getPropertyValue("--min-font-size")) || 4;
+      let low = minFontSize;
+      let high = maxFontSize;
+      let best = minFontSize;
+
+      field.style.fontSize = best + "pt";
+
+      for (let i = 0; i < 22; i += 1) {
+        const mid = (low + high) / 2;
+        field.style.fontSize = mid + "pt";
+
+        const fitsWidth = field.scrollWidth <= field.clientWidth + 1;
+        const fitsHeight = field.scrollHeight <= field.clientHeight + 1;
+
+        if (fitsWidth && fitsHeight) {
+          best = mid;
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+
+      field.style.fontSize = best + "pt";
+    }
+
+    function adjustAxisPageLayout(page) {
+      const title = page.querySelector(".field-eixo-bloco-titulo");
+      const text = page.querySelector(".field-eixo-texto");
+      if (!title || !text) {
+        return;
+      }
+
+      const pageRect = page.getBoundingClientRect();
+      const pageHeight = pageRect.height;
+      const titleRect = title.getBoundingClientRect();
+      const fixedGap = pageHeight * (0.24 / 11.69);
+      const utilityBottom = pageHeight * ((2.234 + 8.32) / 11.69);
+      const textTop = (titleRect.bottom - pageRect.top) + fixedGap;
+
+      text.style.top = (textTop / pageHeight * 100) + "%";
+      text.style.height = (Math.max(0, utilityBottom - textTop) / pageHeight * 100) + "%";
+    }
+
+    function fitAxisTextToBox(field) {
+      if (!field) return;
+      const maxFontSize = 10.5;
+      const minFontSize = 7;
+      let low = minFontSize;
+      let high = maxFontSize;
+      let best = minFontSize;
+
+      field.style.fontSize = maxFontSize + "pt";
+      if (field.scrollWidth <= field.clientWidth + 1 && field.scrollHeight <= field.clientHeight + 1) {
+        return;
+      }
+
+      for (let i = 0; i < 18; i += 1) {
+        const mid = (low + high) / 2;
+        field.style.fontSize = mid + "pt";
+        const fitsWidth = field.scrollWidth <= field.clientWidth + 1;
+        const fitsHeight = field.scrollHeight <= field.clientHeight + 1;
+
+        if (fitsWidth && fitsHeight) {
+          best = mid;
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+
+      field.style.fontSize = best + "pt";
+    }
+    function cloneFieldForMeasure(field) {
+      const clone = field.cloneNode(false);
+      clone.style.visibility = "hidden";
+      clone.style.pointerEvents = "none";
+      clone.style.left = field.style.left;
+      clone.style.top = field.style.top;
+      clone.style.width = field.getBoundingClientRect().width + "px";
+      clone.style.height = field.getBoundingClientRect().height + "px";
+      clone.style.position = "absolute";
+      return clone;
+    }
+
+    function setFieldHtml(field, html) {
+      const label = field.querySelector(".debug-field-label");
+      field.innerHTML = "";
+      if (label) {
+        field.appendChild(label);
+      }
+      field.insertAdjacentHTML("beforeend", html);
+    }
+    function splitMarkdownParagraphs(value) {
+      return normalizeMarkdownBreaks(value)
+        .split(/\n{2,}/)
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean);
+    }
+
+    function markdownFromParagraphs(paragraphs) {
+      return paragraphs.join("\n\n");
+    }
+
+    function fieldContentFits(field) {
+      const contentNodes = Array.from(field.children).filter((child) => !child.classList.contains("debug-field-label"));
+      if (contentNodes.length === 0) {
+        return true;
+      }
+
+      const fieldRect = field.getBoundingClientRect();
+      const lastContent = contentNodes[contentNodes.length - 1];
+      const lastRect = lastContent.getBoundingClientRect();
+      const bottomSafety = 4;
+
+      return lastRect.bottom <= fieldRect.bottom - bottomSafety;
+    }
+    function fillFlowBox(paragraphs, field, startIndex) {
+      let currentIndex = startIndex;
+      const accepted = [];
+
+      while (currentIndex < paragraphs.length) {
+        const candidate = accepted.concat(paragraphs[currentIndex]);
+        setFieldHtml(field, renderBasicMarkdown(markdownFromParagraphs(candidate)));
+
+        if (fieldContentFits(field)) {
+          accepted.push(paragraphs[currentIndex]);
+          currentIndex += 1;
+        } else {
+          break;
+        }
+      }
+
+      if (accepted.length === 0 && currentIndex < paragraphs.length) {
+        accepted.push(paragraphs[currentIndex]);
+        currentIndex += 1;
+      }
+
+      setFieldHtml(field, renderBasicMarkdown(markdownFromParagraphs(accepted)));
+      return currentIndex;
+    }
+
+    function renderFlowText(sourceText, fields, startIndex = 0) {
+      const paragraphs = splitMarkdownParagraphs(sourceText);
+      let index = startIndex;
+      fields.forEach((field) => {
+        index = fillFlowBox(paragraphs, field, index);
+      });
+      return {
+        nextIndex: index,
+        total: paragraphs.length,
+        hasOverflow: index < paragraphs.length
+      };
+    }
+
+    function applyFlowTypography(fields, compact) {
+      fields.forEach((field) => {
+        if (compact) {
+          field.style.fontSize = "10.5pt";
+          field.style.lineHeight = "1.3";
+        } else {
+          field.style.fontSize = "";
+          field.style.lineHeight = "";
+        }
+      });
+    }
+    function polarPoint(centerX, centerY, radius, angle) {
+      return {
+        x: centerX + radius * Math.cos(angle),
+        y: centerY + radius * Math.sin(angle)
+      };
+    }
+
+    function svgPolygon(points) {
+      return points.map((point) => point.x.toFixed(2) + "," + point.y.toFixed(2)).join(" ");
+    }
+
+
+    function renderAxisPageLink(field, pageId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      const links = normalizeLinkList(pageData && pageData.paginaAnalisada).slice(0, pageId === "eixos_5" ? 2 : 1);
+      if (links.length === 0) {
+        return false;
+      }
+
+      field.dataset.axisPageLinkVisible = "true";
+      field.classList.toggle("has-two-qrs", links.length > 1);
+      const qrSlots = links.map((link, index) => `<span class="axis-page-link-qr" data-qr-link="${escapeHtml(link)}" aria-label="QR Code ${pageId === "eixos_5" && index === 0 ? "YouTube" : pageId === "eixos_5" && index === 1 ? "TikTok" : "pagina analisada"}"></span>`).join("");
+
+      field.innerHTML = `
+        <span class="axis-page-link-label">Página<br>analisada:</span>
+        ${qrSlots}
+      `;
+      field.querySelectorAll(".axis-page-link-qr").forEach((slot) => {
+        const link = slot.dataset.qrLink;
+        if (window.QRCode && link) {
+          new QRCode(slot, {
+            text: link,
+            width: 180,
+            height: 180,
+            colorDark: "#111111",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } else {
+          slot.textContent = "QR";
+        }
+      });
+      return true;
+    }
+
+    function renderAxisScore(field, pageId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      const score = pageData && Object.prototype.hasOwnProperty.call(pageData, "notaEixo") ? pageData.notaEixo : "";
+      if (pageId === "eixos_7") {
+        field.remove();
+        return;
+      }
+      field.innerHTML = `
+        <div class="score-pill-large axis-score-pill">
+          <div class="score-pill-title">Nota</div>
+          <div class="score-pill-value"><span>${escapeHtml(score)}</span><span class="score-pill-limit">/10</span></div>
+        </div>
+      `;
+    }
+
+    function trimOverflowingAxisRecommendations(field) {
+      const list = field.querySelector(".axis-recommendations-list");
+      if (!list) {
+        return;
+      }
+
+      let pills = Array.from(list.querySelectorAll(".axis-recommendation-pill"));
+      while (pills.length > 0 && field.scrollHeight > field.clientHeight + 1) {
+        pills[pills.length - 1].remove();
+        pills = Array.from(list.querySelectorAll(".axis-recommendation-pill"));
+      }
+    }
+
+    function renderEffortDots(level) {
+      const effort = Math.max(0, Math.min(5, Number(level) || 0));
+      const dots = Array.from({ length: 5 }, (_, index) => {
+        const activeClass = index < effort ? " is-active" : "";
+        return `<span class="axis-recommendation-effort-dot${activeClass}"></span>`;
+      }).join("");
+
+      return `
+        <span class="axis-recommendation-effort">
+          <span>Esforço</span>
+          <span class="axis-recommendation-effort-dots">${dots}</span>
+        </span>
+      `;
+    }
+
+    function normalizeRecommendation(recommendation) {
+      if (recommendation && typeof recommendation === "object") {
+        return {
+          texto: recommendation.texto || "",
+          esforco: recommendation.esforco
+        };
+      }
+
+      return {
+        texto: recommendation,
+        esforco: 3
+      };
+    }
+
+    function renderAxisRecommendations(field, pageId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      const recommendations = Array.isArray(pageData && pageData.recomendacoes) ? pageData.recomendacoes : [];
+      const validRecommendations = recommendations
+        .map(normalizeRecommendation)
+        .filter((item) => String(item.texto || "").trim());
+
+      if (validRecommendations.length === 0) {
+        field.innerHTML = `
+          <div class="axis-recommendations-title">Recomendações</div>
+          <div class="axis-recommendations-empty"><span><strong>Nenhuma recomendação concreta identificada</strong>Continue mantendo este eixo consistente, atualizado e alinhado à sua estratégia digital.</span></div>
+        `;
+        return;
+      }
+
+      const items = validRecommendations.map((item, index) => `
+        <div class="axis-recommendation-pill"><span class="axis-recommendation-number">${index + 1}</span>${renderEffortDots(item.esforco)}<span class="axis-recommendation-pill-text">${renderInlineMarkdown(item.texto)}</span></div>
+      `).join("");
+
+      field.innerHTML = `
+        <div class="axis-recommendations-title">Recomendações</div>
+        <div class="axis-recommendations-list">${items}</div>
+      `;
+
+    }
+
+
+    function cssSizeToPx(value, fallback) {
+      const numeric = Number.parseFloat(value);
+      if (!Number.isFinite(numeric)) return fallback;
+      return value.endsWith("pt") ? numeric * 96 / 72 : numeric;
+    }
+
+    function fitActionTextElement(element, options = {}) {
+      if (!element) return;
+      const styles = getComputedStyle(element);
+      const base = cssSizeToPx(styles.getPropertyValue("--base-font-size").trim(), Number.parseFloat(styles.fontSize) || 12);
+      const min = cssSizeToPx(styles.getPropertyValue("--min-font-size").trim(), 7);
+      const maxLines = options.maxLines || 0;
+      let size = base;
+      element.style.fontSize = size + "px";
+
+      for (let step = 0; step < 60; step += 1) {
+        const computed = getComputedStyle(element);
+        const lineHeight = Number.parseFloat(computed.lineHeight) || size;
+        const lineCount = Math.ceil(element.scrollHeight / lineHeight);
+        const overflowsHeight = element.scrollHeight > element.clientHeight + 1;
+        const overflowsWidth = element.scrollWidth > element.clientWidth + 1;
+        const overflowsLines = maxLines && lineCount > maxLines;
+        if ((!overflowsHeight && !overflowsWidth && !overflowsLines) || size <= min) break;
+        size = Math.max(size - 0.35, min);
+        element.style.fontSize = size + "px";
+      }
+    }
+
+    function fitActionPlanText(root = document) {
+      root.querySelectorAll(".action-recommendation-title").forEach((element) => fitActionTextElement(element, { maxLines: 3 }));
+      root.querySelectorAll(".action-recommendation-motive, .action-result-text").forEach((element) => fitActionTextElement(element));
+    }
+    function renderMethodologyPage(field, value) {
+      const data = value || {};
+      const titleLines = String(data.titulo || "").split(/\n+/).map((line, index) => {
+        const content = escapeHtml(line);
+        return index === 1 ? `<span>${content}</span>` : content;
+      }).join("<br>");
+      const scaleItems = (data.escala || []).map((item) => `
+        <div class="methodology-scale-item" style="--level-color: ${escapeHtml(item.cor || "#04b8c9")}">
+          <div class="methodology-scale-score">${escapeHtml(item.nota || "")}</div>
+          <div><span class="methodology-scale-name">${escapeHtml(item.nome || "")}</span><span class="methodology-scale-desc">${escapeHtml(item.descricao || "")}</span></div>
+        </div>
+      `).join("");
+      const axisCards = [
+        { titulo: "Google", texto: "Mostra como o médico aparece quando alguém pesquisa seu nome e se também consegue ser encontrado por pacientes que buscam pela especialidade e pela cidade." },
+        { titulo: "Google Meu Negócio", texto: "Avalia a presença nas buscas locais, a clareza de endereço, telefone, horários, avaliações e demais informações que ajudam o paciente a confirmar o atendimento." },
+        { titulo: "Site profissional", texto: "Analisa se existe uma fonte própria capaz de apresentar a atuação com clareza, organizar informações relevantes e orientar o paciente antes do contato." },
+        { titulo: "Instagram", texto: "Observa como o perfil apresenta o médico, quais conteúdos ajudam a explicar sua atuação e se existe um caminho claro para contato ou aprofundamento." },
+        { titulo: "Redes Sociais de Vídeo", texto: "Avalia como YouTube e TikTok podem informar, aproximar e gerar familiaridade antes da consulta, sem obrigar o profissional a atuar nesses canais." },
+        { titulo: "Canais de Contato (NAP)", texto: "NAP significa Name, Address, Phone: nome, endereço e telefone. O eixo verifica se esses dados estão claros e consistentes para facilitar o contato." },
+        { titulo: "Prontidão para IA", texto: "Leitura qualitativa sobre a clareza das informações públicas para ferramentas de inteligência artificial.", qualitative: true }
+      ].map((axis) => `
+        <div class="methodology-axis-card${axis.qualitative ? " methodology-axis-card-qualitative" : ""}">
+          <span class="methodology-axis-card-title">${escapeHtml(axis.titulo)}</span>
+          <span class="methodology-axis-card-text">${escapeHtml(axis.texto)}</span>
+        </div>
+      `).join("");
+      field.innerHTML = `
+        <div class="methodology-shell">
+          <header class="methodology-header">
+            <h2 class="methodology-title">${titleLines}</h2>
+            <p class="methodology-intro">${escapeHtml(data.introducao || "")}</p>
+          </header>
+          <div class="methodology-main">
+            <section class="methodology-panel">
+              <h3 class="methodology-panel-title">Eixos analisados</h3>
+              <div class="methodology-axis-grid">${axisCards}</div>
+            </section>
+            <section class="methodology-panel">
+              <h3 class="methodology-panel-title">Escala de avaliação</h3>
+              <div class="methodology-scale">${scaleItems}</div>
+            </section>
+          </div>
+          <div class="methodology-axis-footnote">* Prontidão para IA não recebe nota porque respostas de inteligência artificial variam conforme ferramenta, pergunta, fontes disponíveis e momento da busca.</div>
+        </div>
+      `;
+    }
+    function renderActionPlan(field, value) {
+      const data = value || {};
+      const horizons = Array.isArray(data.horizontes) ? data.horizontes : [];
+      const horizonHtml = horizons.map((horizon) => {
+        const items = Array.isArray(horizon.acoes) ? horizon.acoes : [];
+        const period = horizon.periodo || horizon.prazo || "";
+        const theme = horizon.tema || horizon.titulo || "";
+        return `
+          <section class="action-horizon">
+            <div class="action-horizon-main">
+              <header class="action-horizon-header">
+                <span class="action-period">${escapeHtml(period)}</span>
+                <h3 class="action-theme">${escapeHtml(theme)}</h3>
+              </header>
+              <ul class="action-items">
+                ${items.map((item) => {
+                  if (typeof item === "string") {
+                    return `<li class="action-item">${escapeHtml(item)}</li>`;
+                  }
+                  return `<li class="action-item"><span class="action-recommendation-title">${escapeHtml(item.titulo || "")}</span><span class="action-recommendation-motive">${escapeHtml(item.motivo || "")}</span></li>`;
+                }).join("")}
+              </ul>
+            </div>
+            <div class="action-result"><strong>Resultado esperado</strong><span class="action-result-text">${escapeHtml(horizon.resultado_esperado || "")}</span></div>
+          </section>
+        `;
+      }).join("");
+
+      field.innerHTML = `
+        <div class="action-plan-shell">
+          <div class="action-horizons">${horizonHtml}</div>
+        </div>
+      `;
+      fitActionPlanText(field);
+    }
+    function calculateAverageScore(config) {
+      const values = ((config && config.eixos) || []).filter((item) => item && item.nota !== "N/A" && item.nota !== null && item.nota !== undefined);
+      if (values.length === 0) {
+        return "0.0";
+      }
+
+      const totalWeight = values.reduce((sum, item) => sum + (Number(item.peso) || 1), 0);
+      const weightedTotal = values.reduce((sum, item) => sum + (Number(item.nota) || 0) * (Number(item.peso) || 1), 0);
+      return (weightedTotal / totalWeight).toFixed(1);
+    }
+
+    function renderAverageScore(field, pageId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      const score = calculateAverageScore(pageData && pageData.radarEixos);
+      field.innerHTML = `
+        <div class="score-pill-large">
+          <div class="score-pill-title">Nota geral</div>
+          <div class="score-pill-value"><span>${escapeHtml(score)}</span><span class="score-pill-limit">/10</span></div>
+          <div class="score-pill-note">Média ponderada conforme metodologia</div>
+        </div>
+      `;
+    }
+
+    function getDiagnosisScoreStatus(score) {
+      const value = Number(score);
+      if (!Number.isFinite(value) || value <= 0) {
+        return { label: "Inexistente", color: "#8f8f8f" };
+      }
+      if (value <= 2) {
+        return { label: "Crítico", color: "#ef5b48" };
+      }
+      if (value <= 4) {
+        return { label: "Fraco", color: "#f09a3d" };
+      }
+      if (value <= 6) {
+        return { label: "Regular", color: "#d8b928" };
+      }
+      if (value <= 8) {
+        return { label: "Bom", color: "#54c96f" };
+      }
+      return { label: "Referência", color: "#0fbf72" };
+    }
+
+    function renderDiagnosisAxisTable(field) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas.diagnostico;
+      const axes = ((pageData && pageData.radarEixos && pageData.radarEixos.eixos) || []).filter(Boolean);
+      const rows = axes.map((axis) => {
+        const axisName = axis.nome || "";
+        const isQualitativeAxis = axisName === "Prontidão para IA";
+        if (isQualitativeAxis) {
+          return `
+          <tr>
+            <td class="diagnosis-axis-name">${escapeHtml(axisName)}</td>
+            <td class="diagnosis-axis-status-cell" colspan="2"><span class="diagnosis-axis-status diagnosis-axis-no-score">EIXO SEM NOTA</span></td>
+          </tr>
+        `;
+        }
+
+        const score = axis.nota !== undefined && axis.nota !== null && axis.nota !== "" ? axis.nota : 0;
+        const status = getDiagnosisScoreStatus(score);
+        return `
+          <tr>
+            <td class="diagnosis-axis-name">${escapeHtml(axisName)}</td>
+            <td class="diagnosis-axis-score">${escapeHtml(score)}</td>
+            <td class="diagnosis-axis-status-cell"><span class="diagnosis-axis-status" style="background-color: ${status.color}">${escapeHtml(status.label)}</span></td>
+          </tr>
+        `;
+      }).join("");
+
+      field.innerHTML = `
+        <div class="diagnosis-axis-table-title">Notas por eixo</div>
+        <table class="diagnosis-axis-table" aria-label="Notas por eixo">
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    function normalizeDiagnosisAction(action, index) {
+      if (action && typeof action === "object") {
+        return {
+          titulo: action.titulo || "Ação " + (index + 1),
+          motivo: action.motivo || action.texto || ""
+        };
+      }
+
+      return {
+        titulo: "Ação " + (index + 1),
+        motivo: action || ""
+      };
+    }
+
+    function renderDiagnosisActions(field) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas.diagnostico;
+      const sourceActions = Array.isArray(pageData && pageData.acoesAgora) ? pageData.acoesAgora : [];
+      const fallbackActions = [
+        { titulo: "Padronizar informações", motivo: "Padronizar nome, especialidade, cidade, região de atendimento, telefone, WhatsApp, links principais e descrições em todos os pontos onde o paciente confirma as informações antes de decidir entrar em contato." },
+        { titulo: "Reforçar clareza", motivo: "Reforçar as informações que ajudam o paciente a entender a atuação, os diferenciais, os temas tratados, o tipo de consulta e o caminho recomendado antes de enviar uma mensagem ou agendar atendimento." },
+        { titulo: "Priorizar impacto", motivo: "Priorizar os canais com maior impacto na descoberta e na confiança do consultório, começando pelos ajustes que melhoram busca local, clareza de contato, consistência entre plataformas e percepção profissional." }
+      ];
+      const actions = (sourceActions.length > 0 ? sourceActions : fallbackActions).slice(0, 3).map(normalizeDiagnosisAction);
+      const items = actions.map((action, index) => `
+        <li><span class="diagnosis-actions-number">${index + 1}</span><span class="diagnosis-actions-content"><span class="diagnosis-actions-card-title">${escapeHtml(action.titulo)}</span><span class="diagnosis-actions-text">${renderInlineMarkdown(action.motivo)}</span></span></li>
+      `).join("");
+
+      field.innerHTML = `
+        <div class="diagnosis-actions-shell">
+          <div class="diagnosis-actions-title">Se você for mexer em três coisas</div>
+          <ul class="diagnosis-actions-list">${items}</ul>
+        </div>
+      `;
+    }
+
+    function fitDiagnosisActionsBlock(scope = document) {
+      const field = scope.querySelector && scope.querySelector(".field-diagnostico-acoes");
+      if (!field) return;
+
+      const cards = Array.from(field.querySelectorAll(".diagnosis-actions-list li"));
+      const texts = Array.from(field.querySelectorAll(".diagnosis-actions-text"));
+      if (cards.length === 0 || texts.length === 0) return;
+
+      const initialTop = 60.2;
+      const initialHeight = 30.8;
+      const minTop = 56.8;
+      const maxHeight = 34.2;
+      const maxFontSize = 10;
+      const minFontSize = 8;
+
+      function applyLayout(top, height, fontSize) {
+        field.style.top = top + "%";
+        field.style.height = height + "%";
+        texts.forEach((text) => {
+          text.style.fontSize = fontSize + "pt";
+        });
+      }
+
+      function overflows() {
+        return cards.some((card) => card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1);
+      }
+
+      applyLayout(initialTop, initialHeight, maxFontSize);
+      if (!overflows()) return;
+
+      for (let i = 1; i <= 12; i += 1) {
+        const progress = i / 12;
+        const top = initialTop - ((initialTop - minTop) * progress);
+        const height = initialHeight + ((maxHeight - initialHeight) * progress);
+        applyLayout(top, height, maxFontSize);
+        if (!overflows()) return;
+      }
+
+      let low = minFontSize;
+      let high = maxFontSize;
+      let best = minFontSize;
+      for (let i = 0; i < 18; i += 1) {
+        const mid = (low + high) / 2;
+        applyLayout(minTop, maxHeight, mid);
+        if (overflows()) {
+          high = mid;
+        } else {
+          best = mid;
+          low = mid;
+        }
+      }
+      applyLayout(minTop, maxHeight, best);
+    }
+    function renderRadarChart(field, config) {
+      const values = (config && config.eixos) || [];
+      const maxValue = (config && config.escalaMaxima) || 10;
+      const visualOffset = 1.5;
+      const visualMaxValue = maxValue + visualOffset;
+      const centerX = 300;
+      const centerY = 287;
+      const radius = 205;
+      const labelOffset = 34;
+      const count = values.length || 1;
+      const startAngle = -Math.PI / 2;
+
+      const axes = values.map((item, index) => {
+        const angle = startAngle + (Math.PI * 2 * index) / count;
+        const end = polarPoint(centerX, centerY, radius, angle);
+        const scoreValue = Math.round(Number(item.nota) || 0);
+        const visualValue = Math.max(0, Math.min(scoreValue, maxValue)) + visualOffset;
+        const score = polarPoint(centerX, centerY, radius * visualValue / visualMaxValue, angle);
+        const label = polarPoint(score.x, score.y, labelOffset, angle);
+        return { item: { ...item, nota: scoreValue }, angle, end, label, pill: score, score };
+      });
+
+            const maxShadowPoints = axes.map(({ angle }) => polarPoint(centerX, centerY, radius * (maxValue + visualOffset) / visualMaxValue, angle));
+            const maxShadow = `<polygon class="radar-max-shadow" points="${svgPolygon(maxShadowPoints)}"></polygon>`;
+      const maxRays = maxShadowPoints.map((point) => `<line class="radar-max-ray" x1="${centerX}" y1="${centerY}" x2="${point.x.toFixed(2)}" y2="${point.y.toFixed(2)}"></line>`).join("");
+      const areaPoints = axes.map(({ score }) => score);
+      const area = `<polygon class="radar-area" points="${svgPolygon(areaPoints)}"></polygon>`;
+      const labels = axes.map(({ item, label, score }) => {
+        const anchor = score.x < centerX - 8 ? "end" : score.x > centerX + 8 ? "start" : "middle";
+        return `<text class="radar-label" x="${label.x.toFixed(2)}" y="${label.y.toFixed(2)}" text-anchor="${anchor}" dominant-baseline="middle">${escapeHtml(item.nome)}</text>`;
+      }).join("");
+      const scorePills = axes.map(({ item, pill }) => `
+        <g>
+          <rect class="radar-score-pill" x="${(pill.x - 15).toFixed(2)}" y="${(pill.y - 12).toFixed(2)}" width="30" height="24" rx="12"></rect>
+          <text class="radar-score-text" x="${pill.x.toFixed(2)}" y="${(pill.y + 1).toFixed(2)}" text-anchor="middle" dominant-baseline="middle">${item.nota}</text>
+        </g>`).join("");
+
+                  field.innerHTML = `<div class="radar-box-title">RADAR DA PRESENÇA DIGITAL</div>
+      <svg class="radar-chart" viewBox="0 0 600 530" role="img" aria-label="Grafico radar dos eixos">
+${maxShadow}${maxRays}${area}${scorePills}${labels}
+      </svg>`;
+    }
+    function pageUsesLightFooter(pageConfig) {
+      return pageConfig.footerTheme === "light" || /preto|black|dark/i.test(pageConfig.file || "");
+    }
+    function updatePageNumbers() {
+      const pages = Array.from(document.querySelectorAll(".page"));
+      const totalPages = pages.length;
+      pages.forEach((page, index) => {
+        const pageNumber = page.querySelector(".page-number");
+        if (pageNumber) {
+          pageNumber.textContent = String(index + 1) + "/" + String(totalPages);
+        }
+      });
+    }
+    function renderReport() {
+      const report = document.getElementById("report");
+      document.body.classList.remove("debug-boxes");
+      report.innerHTML = "";
+      const pageFileCounts = {};
+
+      function renderPageInstance(pageConfig, options = {}) {
+        const page = document.createElement("section");
+        page.className = "page";
+        if (pageUsesLightFooter(pageConfig)) {
+          page.classList.add("page-footer-light");
+        }
+        page.dataset.page = pageConfig.id;
+
+        const debugPageName = pageConfig.debugName || pageConfig.id;
+        pageFileCounts[debugPageName] = (pageFileCounts[debugPageName] || 0) + 1;
+        const pageLabel = document.createElement("div");
+        pageLabel.className = "debug-page-label";
+        pageLabel.textContent = pageFileCounts[debugPageName] > 1 ? debugPageName + " #" + pageFileCounts[debugPageName] : debugPageName;
+        page.appendChild(pageLabel);
+
+        if (pageConfig.id !== "capa" && !pageConfig.hideFooter) {
+          const footerLine = document.createElement("div");
+          footerLine.className = "page-footer-line";
+          page.appendChild(footerLine);
+
+          const pageNumber = document.createElement("div");
+          pageNumber.className = "page-number";
+          pageNumber.dataset.pageNumber = "true";
+          page.appendChild(pageNumber);
+        }
+
+        const bg = document.createElement("img");
+        bg.className = "page-bg";
+        bg.src = ASSETS.pagesBasePath + pageConfig.file;
+        bg.alt = "";
+        page.appendChild(bg);
+
+        const fieldsToFit = [];
+        const recommendationFieldsToTrim = [];
+        const flowGroups = {};
+        const debugLabelPairs = [];
+
+        pageConfig.fields.forEach((fieldConfig) => {
+          const field = document.createElement("div");
+          field.className = "field " + fieldConfig.className;
+          field.dataset.field = fieldConfig.id;
+          field.dataset.debugIndex = String(pageConfig.fields.indexOf(fieldConfig) + 1);
+
+          const debugFieldLabel = document.createElement("span");
+          debugFieldLabel.className = "debug-field-label";
+          debugFieldLabel.textContent = "Box " + field.dataset.debugIndex + " - " + fieldConfig.id;
+          page.appendChild(debugFieldLabel);
+          debugLabelPairs.push({ field, label: debugFieldLabel });
+
+          const fieldValue = getFieldValue(pageConfig.id, fieldConfig.id);
+          if (fieldConfig.type === "action-plan") {
+            renderActionPlan(field, fieldValue);
+          } else if (fieldConfig.type === "methodology-page") {
+            renderMethodologyPage(field, REPORT_DATA.paginas && REPORT_DATA.paginas[pageConfig.id]);
+          } else if (fieldConfig.type === "markdown" || fieldConfig.type === "markdown-fit-text") {
+            setFieldHtml(field, renderBasicMarkdown(fieldValue));
+          } else if (fieldConfig.type === "radar-chart") {
+            renderRadarChart(field, fieldValue);
+          } else if (fieldConfig.type === "average-score") {
+            renderAverageScore(field, pageConfig.id);
+          } else if (fieldConfig.type === "diagnosis-axis-table") {
+            renderDiagnosisAxisTable(field);
+          } else if (fieldConfig.type === "diagnosis-actions") {
+            renderDiagnosisActions(field);
+          } else if (fieldConfig.type === "axis-score") {
+            renderAxisScore(field, pageConfig.id);
+          } else if (fieldConfig.type === "axis-recommendations") {
+            renderAxisRecommendations(field, pageConfig.id);
+          } else if (fieldConfig.type === "axis-qualitative-note") {
+            field.textContent = "Prontidão para IA não recebe nota porque respostas de inteligência artificial variam conforme ferramenta, pergunta, fontes disponíveis e momento da busca.";
+          } else if (fieldConfig.type === "axis-page-link") {
+            if (renderAxisPageLink(field, pageConfig.id) === false) {
+              return;
+            }
+          } else if (fieldConfig.type === "flow-text") {
+            field.dataset.flowSource = "true";
+          } else if (fieldConfig.type === "flow-target") {
+            field.dataset.flowTarget = "true";
+          } else {
+            field.appendChild(document.createTextNode(fieldValue));
+          }
+
+          page.appendChild(field);
+          if (field.dataset.axisPageLinkVisible === "true") {
+            page.classList.add("has-axis-page-link");
+          }
+
+          if (fieldConfig.type === "fit-text" || fieldConfig.type === "markdown-fit-text") {
+            fieldsToFit.push(field);
+          }
+
+          if (fieldConfig.type === "axis-recommendations") {
+            recommendationFieldsToTrim.push(field);
+          }
+
+          if (fieldConfig.flowGroup) {
+            if (!flowGroups[fieldConfig.flowGroup]) {
+              flowGroups[fieldConfig.flowGroup] = { sourceText: "", fields: [] };
+            }
+
+            if (fieldConfig.type === "flow-text") {
+              flowGroups[fieldConfig.flowGroup].sourceText = fieldValue;
+            }
+
+            flowGroups[fieldConfig.flowGroup].fields.push(field);
+          }
+        });
+
+        report.appendChild(page);
+        debugLabelPairs.forEach(({ field, label }) => positionDebugFieldLabel(field, label));
+
+        const flowResultByGroup = {};
+        withDebugLabelsHidden(() => {
+          Object.keys(flowGroups).forEach((groupId) => {
+            applyFlowTypography(flowGroups[groupId].fields, Boolean(options.compactFlow));
+            flowResultByGroup[groupId] = renderFlowText(
+              flowGroups[groupId].sourceText,
+              flowGroups[groupId].fields,
+              (options.flowStartByGroup && options.flowStartByGroup[groupId]) || 0
+            );
+          });
+          fieldsToFit.forEach(fitTextToBox);
+          adjustAxisPageLayout(page);
+          fitAxisTextToBox(page.querySelector(".field-eixo-texto"));
+          fitDiagnosisActionsBlock(page);
+          recommendationFieldsToTrim.forEach(trimOverflowingAxisRecommendations);
+          debugLabelPairs.forEach(({ field, label }) => positionDebugFieldLabel(field, label));
+        });
+
+        return { page, flowResultByGroup };
+      }
+
+      ASSETS.pages.forEach((pageConfig) => {
+        let result = renderPageInstance(pageConfig, { compactFlow: false });
+        const overflowingGroups = Object.keys(result.flowResultByGroup).filter((groupId) => result.flowResultByGroup[groupId].hasOverflow);
+
+        if (overflowingGroups.length > 0 && pageConfig.allowFlowRepeat) {
+          result.page.remove();
+          pageFileCounts[pageConfig.debugName || pageConfig.id] -= 1;
+          const compactResult = renderPageInstance(pageConfig, { compactFlow: true });
+          const compactStillOverflows = Object.keys(compactResult.flowResultByGroup).some((groupId) => compactResult.flowResultByGroup[groupId].hasOverflow);
+
+          if (compactStillOverflows) {
+            compactResult.page.remove();
+            pageFileCounts[pageConfig.debugName || pageConfig.id] -= 1;
+            result = renderPageInstance(pageConfig, { compactFlow: false });
+          } else {
+            result = compactResult;
+          }
+        }
+
+        let continuationStarts = {};
+        Object.keys(result.flowResultByGroup).forEach((groupId) => {
+          if (result.flowResultByGroup[groupId].hasOverflow) {
+            continuationStarts[groupId] = result.flowResultByGroup[groupId].nextIndex;
+          }
+        });
+
+        let guard = 0;
+        while (pageConfig.allowFlowRepeat && Object.keys(continuationStarts).length > 0 && guard < 20) {
+          guard += 1;
+          const continuation = renderPageInstance(pageConfig, {
+            compactFlow: false,
+            flowStartByGroup: continuationStarts
+          });
+
+          const nextStarts = {};
+          Object.keys(continuation.flowResultByGroup).forEach((groupId) => {
+            if (continuation.flowResultByGroup[groupId].hasOverflow) {
+              nextStarts[groupId] = continuation.flowResultByGroup[groupId].nextIndex;
+            }
+          });
+          continuationStarts = nextStarts;
+        }
+      });
+
+      updatePageNumbers();
+      document.body.classList.toggle("debug-boxes", Boolean(ASSETS.showDebugBoxes));
+    }
+    function recalculateAxisLayouts() {
+      fitActionPlanText(document);
+      document.querySelectorAll(".page").forEach((page) => {
+        adjustAxisPageLayout(page);
+        fitAxisTextToBox(page.querySelector(".field-eixo-texto"));
+        fitDiagnosisActionsBlock(page);
+        page.querySelectorAll(".field-eixo-recomendacoes").forEach(trimOverflowingAxisRecommendations);
+      });
+    }
+
+    function validateNoParagraphSeparatorLeak() {
+      const report = document.getElementById("report");
+      if (!report) return true;
+
+      const separatorPattern = /\\r\\n|\\n\\n|\\n|\\r/g;
+
+      function leakedTextNodes() {
+        const nodes = [];
+        const walker = document.createTreeWalker(report, NodeFilter.SHOW_TEXT);
+        let node;
+
+        while ((node = walker.nextNode())) {
+          const text = node.nodeValue || "";
+          if (separatorPattern.test(text)) {
+            nodes.push(node);
+          }
+          separatorPattern.lastIndex = 0;
+        }
+
+        return nodes;
+      }
+
+      function appendTextWithLineBreaks(fragment, text) {
+        text.split(/\n/).forEach((line, index) => {
+          if (index > 0) {
+            fragment.appendChild(document.createElement("br"));
+          }
+          fragment.appendChild(document.createTextNode(line));
+        });
+      }
+
+      function replaceTextNodeWithParagraphBreaks(node) {
+        const text = normalizeMarkdownBreaks(node.nodeValue || "");
+        const paragraphs = text
+          .split(/\n{2,}/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean);
+
+        if (paragraphs.length === 0) {
+          node.nodeValue = "";
+          return;
+        }
+
+        const parent = node.parentElement;
+        if (parent && parent.tagName === "P" && parent.childNodes.length === 1) {
+          const fragment = document.createDocumentFragment();
+          paragraphs.forEach((paragraph) => {
+            const p = document.createElement("p");
+            appendTextWithLineBreaks(p, paragraph);
+            fragment.appendChild(p);
+          });
+          parent.replaceWith(fragment);
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        paragraphs.forEach((paragraph, index) => {
+          if (index > 0) {
+            fragment.appendChild(document.createElement("br"));
+            fragment.appendChild(document.createElement("br"));
+          }
+          appendTextWithLineBreaks(fragment, paragraph);
+        });
+        node.replaceWith(fragment);
+      }
+
+      const leakedNodes = leakedTextNodes();
+      leakedNodes.forEach(replaceTextNodeWithParagraphBreaks);
+
+      const remainingLeaks = leakedTextNodes();
+      document.body.dataset.separatorLeak = remainingLeaks.length > 0 ? "true" : "false";
+
+      if (remainingLeaks.length > 0) {
+        console.error("Separador de parágrafo ainda vazou após reparo automático.", remainingLeaks.map((node) => node.nodeValue));
+        return false;
+      }
+
+      return true;
+    }
+
+    function recalculateAndValidateReport() {
+      recalculateAxisLayouts();
+      validateNoParagraphSeparatorLeak();
+    }
+    renderReport();
+    requestAnimationFrame(() => requestAnimationFrame(recalculateAndValidateReport));
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => requestAnimationFrame(recalculateAndValidateReport));
+    }
+    window.addEventListener("load", () => requestAnimationFrame(recalculateAndValidateReport));
+  </script>
+</body>
+</html>
+
+
