@@ -181,7 +181,7 @@
       width: 40.8102%;
       height: 57.7268%;
       font-family: "IBM Plex Sans", Arial, sans-serif;
-      font-size: 11pt;
+      font-size: 10pt;
       font-weight: 400;
       color: #000000;
       align-items: flex-start;
@@ -230,7 +230,7 @@
       left: 6.0459%;
       top: 23.0%;
       width: 87.91%;
-      height: 68.2%;
+      height: 70.8%;
       display: block;
       color: #ffffff;
       overflow: visible;
@@ -243,19 +243,22 @@
       width: 100%;
       height: 100%;
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      gap: 0.28in;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 0.16in;
       font-family: "IBM Plex Sans", Arial, sans-serif;
       color: #ffffff;
+      position: relative;
+      padding-bottom: 0.24in;
+      box-sizing: border-box;
     }
 
     .methodology-header {
       display: grid;
-      grid-template-columns: minmax(0, 2.88in) minmax(0, 1fr);
-      gap: 0.56in;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.42in;
       align-items: center;
-      min-height: 1.34in;
-      padding-bottom: 0.18in;
+      min-height: 1.0in;
+      padding-bottom: 0.1in;
       border-bottom: 1pt solid rgba(255, 255, 255, 0.38);
     }
 
@@ -293,12 +296,14 @@
 
     .methodology-main {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.34in;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.36in;
       min-height: 0;
+      height: 100%;
+      align-items: stretch;
     }
 
-    .methodology-panel { min-height: 0; padding-top: 0.02in; }
+    .methodology-panel { min-height: 0; height: 100%; padding-top: 0.02in; display: flex; flex-direction: column; }
 
     .methodology-panel-title {
       margin: 0 0 0.2in;
@@ -310,20 +315,104 @@
       color: var(--accent);
     }
 
+    .methodology-text-block {
+      display: grid;
+      gap: 0.16in;
+      height: auto;
+      align-content: start;
+      font-size: 10.4pt;
+      line-height: 1.42;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .methodology-text-block p {
+      margin: 0;
+      text-align: justify;
+    }
+
+    .methodology-text-callout {
+      margin-top: 0.04in;
+      padding: 0.16in 0.18in;
+      border-left: 0.06in solid var(--accent);
+      background: rgba(255, 255, 255, 0.055);
+      color: #ffffff;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      line-height: 0.96;
+      text-transform: uppercase;
+    }
+
+    .methodology-axis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: repeat(7, minmax(0, 1fr));
+      gap: 0.055in;
+      height: 100%;
+      align-content: start;
+    }
+
+    .methodology-axis-card {
+      min-height: 0;
+      padding: 0.055in 0.1in;
+      border-left: 0.045in solid var(--accent);
+      background: rgba(255, 255, 255, 0.055);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .methodology-axis-card-title {
+      display: block;
+      margin-bottom: 0.02in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 11.6pt;
+      font-weight: 800;
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .methodology-axis-card-text {
+      display: block;
+      font-size: 7.85pt;
+      line-height: 1.13;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .methodology-axis-card-qualitative {
+      border-left-color: #b8b8b8;
+      background: rgba(255, 255, 255, 0.085);
+    }
+
+    .methodology-axis-card-qualitative .methodology-axis-card-title {
+      color: #d6d6d6;
+    }
+
+    .methodology-axis-footnote {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 7.2pt;
+      line-height: 1.16;
+      color: rgba(255, 255, 255, 0.64);
+    }
+
+
     .methodology-scale {
       display: grid;
-      grid-template-rows: repeat(6, 1fr);
-      gap: 0.11in;
-      height: calc(100% - 0.42in);
+      grid-template-rows: repeat(6, minmax(0, 1fr));
+      gap: 0.06in;
+      height: 100%;
     }
 
     .methodology-scale-item {
       display: grid;
-      grid-template-columns: 0.72in 1fr;
+      grid-template-columns: 0.7in 1fr;
       align-items: center;
       gap: 0.13in;
       min-height: 0;
-      padding: 0.07in 0.1in;
+      padding: 0.06in 0.1in;
       background: rgba(255, 255, 255, 0.045);
       border-left: 0.075in solid var(--level-color);
     }
@@ -350,120 +439,14 @@
 
     .methodology-scale-desc {
       display: block;
-      font-size: 7.4pt;
-      line-height: 1.12;
+      font-size: 7.6pt;
+      line-height: 1.1;
       color: var(--muted);
     }
-
-    .methodology-weights {
-      display: grid;
-      grid-template-rows: repeat(7, 1fr);
-      gap: 0.12in;
-      height: calc(100% - 0.42in);
-    }
-
-    .methodology-weight-item {
-      display: grid;
-      grid-template-columns: 1fr 0.42in;
-      grid-template-rows: auto 0.08in;
-      gap: 0.045in 0.12in;
-      align-content: center;
-      min-height: 0;
-    }
-
-    .methodology-weight-name {
-      font-family: "Darker Grotesque", Arial, sans-serif;
-      font-size: 10.2pt;
-      font-weight: 800;
-      line-height: 0.96;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-
-    .methodology-weight-value {
-      font-family: "Darker Grotesque", Arial, sans-serif;
-      font-size: 14pt;
-      font-weight: 800;
-      line-height: 1;
-      color: var(--accent);
-      text-align: right;
-    }
-
-    .methodology-weight-track {
-      grid-column: 1 / -1;
-      height: 0.08in;
-      background: rgba(255, 255, 255, 0.14);
-      overflow: hidden;
-    }
-
-    .methodology-weight-bar {
-      display: block;
-      width: calc(var(--weight) * 5%);
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), rgba(4, 184, 201, 0.42));
-    }
-
-    .methodology-flow {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 0.22in minmax(0, 1fr) 0.22in minmax(0, 1fr) 0.22in minmax(0, 1fr);
-      align-items: center;
-      column-gap: 0.07in;
-      min-height: 0.78in;
-      padding: 0.1in 0 0.08in;
-      border-top: 1pt solid var(--line);
-      border-bottom: 1pt solid var(--line);
-    }
-
-    .methodology-flow-step {
-      min-height: 0.56in;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.08in 0.11in;
-      background: rgba(255, 255, 255, 0.05);
-      font-family: "Darker Grotesque", Arial, sans-serif;
-      font-size: 14.8pt;
-      font-weight: 800;
-      line-height: 0.95;
-      text-align: center;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-
-    .methodology-flow-arrow {
-      position: relative;
-      width: 100%;
-      height: 0.16in;
-      align-self: center;
-    }
-
-    .methodology-flow-arrow::before,
-    .methodology-flow-arrow::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .methodology-flow-arrow::before {
-      left: 0;
-      right: 0.02in;
-      height: 1.2pt;
-      background: rgba(4, 184, 201, 0.8);
-    }
-
-    .methodology-flow-arrow::after {
-      right: 0;
-      width: 0.09in;
-      height: 0.09in;
-      border-top: 1.5pt solid var(--accent);
-      border-right: 1.5pt solid var(--accent);
-      transform: translateY(-50%) rotate(45deg);
-    }
     .field-diagnostico-titulo-resumo {
-      left: 6.0459%;
+      left: 52.3972%;
       top: 21.4542%;
-      width: 55.5981%;
+      width: 41.3634%;
       height: 3.078%;
       --max-font-size: 19pt;
       --min-font-size: 8pt;
@@ -478,10 +461,10 @@
       text-transform: uppercase;
     }
     .field-diagnostico-resumo {
-      left: 6.0459%;
+      left: 52.3972%;
       top: 25.3037%;
-      width: 55.5981%;
-      height: 19.04%;
+      width: 41.3634%;
+      height: 33.2%;
       display: block;
       font-family: "IBM Plex Sans", Arial, sans-serif;
       font-size: 11pt;
@@ -493,13 +476,177 @@
       overflow-wrap: normal;
       word-break: normal;
     }
-    .field-diagnostico-media {
-      left: 63.9057%;
+    .field-diagnostico-tabela {
+      left: 6.0459%;
       top: 21.4542%;
-      width: 29.8549%;
-      height: 16.7716%;
+      width: 40.266%;
+      height: 33.2%;
       display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #111111;
+    }
+
+    .diagnosis-axis-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.4pt;
+      line-height: 1.15;
+    }
+
+    .diagnosis-axis-table-title {
+      display: inline-flex;
+      align-items: center;
+      height: 0.24in;
+      margin-bottom: 0.12in;
+      padding: 0 0.14in;
+      border-radius: 2px;
+      background: #111111;
       color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 8.8pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .diagnosis-axis-table tr {
+      border-bottom: 1px solid rgba(17, 17, 17, 0.13);
+    }
+
+    .diagnosis-axis-table td {
+      padding: 0.09in 0.04in 0.08in 0;
+      vertical-align: middle;
+    }
+
+    .diagnosis-axis-name {
+      width: 58%;
+      font-size: 9.3pt;
+      font-weight: 400;
+    }
+
+    .diagnosis-axis-score {
+      width: 10%;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 13pt;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .diagnosis-axis-status-cell {
+      width: 32%;
+      text-align: right;
+      padding-right: 0;
+    }
+
+    .diagnosis-axis-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0.92in;
+      height: 0.2in;
+      padding: 0 0.12in;
+      border-radius: 999px;
+      color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .diagnosis-axis-no-score {
+      min-width: 1.18in;
+      background-color: #e6e6e6;
+      color: #111111;
+    }
+
+    .field-diagnostico-acoes {
+      left: 6.0459%;
+      top: 60.2%;
+      width: 87.7147%;
+      height: 30.8%;
+      display: block;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: #111111;
+    }
+
+    .diagnosis-actions-shell {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto minmax(0, 1fr);
+      row-gap: 0.18in;
+      align-items: stretch;
+      min-height: 0;
+      border-top: 1.4pt solid #111111;
+      padding-top: 0.16in;
+      box-sizing: border-box;
+    }
+
+    .diagnosis-actions-title {
+      display: flex;
+      align-items: center;
+      gap: 0.12in;
+      color: #04b8c9;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 18pt;
+      font-weight: 600;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .diagnosis-actions-title::before {
+      content: "";
+      display: block;
+      width: 0.38in;
+      height: 3pt;
+      background: #04b8c9;
+      flex: 0 0 auto;
+    }
+
+    .diagnosis-actions-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.16in;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .diagnosis-actions-list li {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      row-gap: 0.1in;
+      min-width: 0;
+      padding: 0.18in 0.16in 0.16in;
+      border: 1.2pt solid rgba(17, 17, 17, 0.18);
+      border-left: 4pt solid #04b8c9;
+      box-sizing: border-box;
+      background: rgba(4, 184, 201, 0.04);
+      overflow: hidden;
+    }
+
+    .diagnosis-actions-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.25in;
+      height: 0.25in;
+      border-radius: 50%;
+      background: #04b8c9;
+      color: #ffffff;
+      font-family: "IBM Plex Sans Condensed SemiBold", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 11pt;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .diagnosis-actions-text {
+      font-size: 10pt;
+      line-height: 1.32;
+      text-align: left;
     }
 
     .score-pill-large {
@@ -752,6 +899,91 @@
       display: block;
       color: #111111;
     }
+    .page[data-page="eixos_7"] .field-eixo-nota {
+      display: none;
+    }
+
+    .page[data-page="eixos_7"] .field-eixo-recomendacoes {
+      top: 19.1054%;
+      height: 64.1%;
+    }
+
+    .page.has-axis-page-link[data-page="eixos_2"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_3"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_4"] .field-eixo-recomendacoes,
+    .page.has-axis-page-link[data-page="eixos_5"] .field-eixo-recomendacoes {
+      height: 52.1%;
+    }
+
+    .field-eixo-page-link {
+      left: 61.1225%;
+      top: 84.55%;
+      width: 29.8428%;
+      height: 5.25%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 0.52in;
+      align-items: center;
+      gap: 0.11in;
+      padding: 0.055in 0.085in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      color: rgba(17, 17, 17, 0.72);
+    }
+
+    .axis-page-link-label {
+      display: block;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12.5pt;
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .axis-page-link-qr {
+      width: 0.52in;
+      height: 0.52in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .axis-page-link-qr img,
+    .axis-page-link-qr canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+    .field-eixo-page-link.has-two-qrs {
+      grid-template-columns: minmax(0, 1fr) 0.44in 0.44in;
+      gap: 0.075in;
+    }
+
+    .field-eixo-page-link.has-two-qrs .axis-page-link-qr {
+      width: 0.44in;
+      height: 0.44in;
+    }
+    .field-eixo-ia-note {
+      left: 61.1225%;
+      top: 84.55%;
+      width: 29.8428%;
+      height: 5.25%;
+      display: flex;
+      align-items: center;
+      padding: 0.055in 0.085in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 7.15pt;
+      line-height: 1.1;
+      text-align: left;
+      color: rgba(17, 17, 17, 0.72);
+    }
+
 
     .axis-recommendations-title {
       font-family: "Darker Grotesque", Arial, sans-serif;
@@ -783,7 +1015,7 @@
       font-family: "IBM Plex Sans", Arial, sans-serif;
       font-size: 9pt;
       font-weight: 400;
-      line-height: 1.18;
+      line-height: 1.1;
       color: #111111;
       box-sizing: border-box;
       overflow: hidden;
@@ -856,6 +1088,30 @@
       position: relative;
       z-index: 2;
       display: block;
+    }
+
+    .axis-recommendations-empty {
+      min-height: 1.05in;
+      padding: 0.18in 0.2in 0.18in 0.24in;
+      border-left: 0.045in solid #8f8f8f;
+      background: rgba(143, 143, 143, 0.12);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 9pt;
+      line-height: 1.2;
+      color: rgba(17, 17, 17, 0.78);
+    }
+
+    .axis-recommendations-empty strong {
+      display: block;
+      margin-bottom: 0.035in;
+      font-family: "Darker Grotesque", Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111111;
     }
     .field-eixo-titulo {
       left: 21.2696%;
@@ -962,40 +1218,6 @@
         box-shadow: none;
       }
     }
-
-        /* CONSTRUCTION ONLY: temporary builder tools. Hidden in print. */
-    .builder-tools {
-      position: fixed !important;
-      top: 12px !important;
-      right: 12px !important;
-      z-index: 2147483647 !important;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .builder-tool-button {
-      border: 0;
-      border-radius: 4px;
-      background: #ed1877;
-      color: #ffffff;
-      padding: 9px 12px;
-      font-family: "Darker Grotesque", Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .builder-export-button {
-      background: #04b8c9;
-    }
-
-    @media print {
-      .builder-tools {
-        display: none !important;
-      }
-    }
     .field-plano-acao {
       left: 6.0459%;
       top: 21.7707%;
@@ -1044,7 +1266,7 @@
 
     .action-analysis-title {
       margin-bottom: 0.1in;
-      font-size: 18pt;
+      font-size: 20pt;
       color: #04b8c9;
     }
 
@@ -1196,7 +1418,7 @@
       flex: 1 1 auto;
       min-height: 0;
       font-size: var(--base-font-size);
-      line-height: 1.18;
+      line-height: 1.1;
       color: rgba(255, 255, 255, 0.82);
       overflow: hidden;
     }
@@ -1211,7 +1433,7 @@
       padding: 0.1in 0.16in 0.12in;
       border-top: 1pt solid rgba(255, 255, 255, 0.42);
       font-size: 8.8pt;
-      line-height: 1.22;
+      line-height: 1.1;
       color: #ffffff;
       background: rgba(4, 184, 201, 0.12);
       overflow: hidden;
@@ -1235,7 +1457,7 @@
       flex: 1 1 auto;
       min-height: 0;
       font-size: var(--base-font-size);
-      line-height: 1.22;
+      line-height: 1.1;
       overflow: hidden;
     }
     body.debug-boxes .action-period,
@@ -1289,15 +1511,9 @@
       content: "resultadoEsperado";
     }</style>
 </head>
-<body>
-  <!--
-    <div class="builder-tools" aria-label="Ferramentas de construção">
-      <button class="builder-tool-button" type="button" id="toggleDebugBoxes">Debug boxes</button>
-      <button class="builder-tool-button builder-export-button" type="button" id="exportPdfButton">Exportar PDF</button>
-    </div>
-  -->
-  <main class="report" id="report"></main>
+<body>  <main class="report" id="report"></main>
 
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script>
     /* =========================================================
        SECAO 1: ASSETS / PAGINAS
@@ -1338,14 +1554,12 @@
             {
               id: "textoPrincipal",
               className: "field-o-que-e-col-1",
-              type: "flow-text",
-              flowGroup: "oQueETexto"
+              type: "markdown"
             },
             {
               id: "textoPrincipalContinua",
               className: "field-o-que-e-col-2",
-              type: "flow-target",
-              flowGroup: "oQueETexto"
+              type: "markdown"
             },
             {
               id: "tagline",
@@ -1387,14 +1601,14 @@
               type: "markdown"
             },
             {
-              id: "notaMediaPonderada",
-              className: "field-diagnostico-media",
-              type: "average-score"
+              id: "diagnosticoTabela",
+              className: "field-diagnostico-tabela",
+              type: "diagnosis-axis-table"
             },
             {
-              id: "radarEixos",
-              className: "field-diagnostico-radar",
-              type: "radar-chart"
+              id: "acoesAgora",
+              className: "field-diagnostico-acoes",
+              type: "diagnosis-actions"
             }
           ]
         },
@@ -1463,6 +1677,11 @@
               id: "recomendacoes",
               className: "field-eixo-recomendacoes",
               type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
             }
           ]
         },
@@ -1497,6 +1716,11 @@
               id: "recomendacoes",
               className: "field-eixo-recomendacoes",
               type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
             }
           ]
         },
@@ -1531,6 +1755,11 @@
               id: "recomendacoes",
               className: "field-eixo-recomendacoes",
               type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
             }
           ]
         },
@@ -1565,6 +1794,11 @@
               id: "recomendacoes",
               className: "field-eixo-recomendacoes",
               type: "axis-recommendations"
+            },
+            {
+              id: "paginaAnalisada",
+              className: "field-eixo-page-link",
+              type: "axis-page-link"
             }
           ]
         },
@@ -1633,6 +1867,11 @@
               id: "recomendacoes",
               className: "field-eixo-recomendacoes",
               type: "axis-recommendations"
+            },
+            {
+              id: "notaQualitativaIA",
+              className: "field-eixo-ia-note",
+              type: "axis-qualitative-note"
             }
           ]
         },
@@ -1686,124 +1925,119 @@ Essa presença não depende de um único canal. **Ela é construída pela soma d
 
 Quanto mais claras, coerentes e atualizadas essas informações estiverem, mais fácil se torna para o paciente entender quem é o médico, onde atende, quais são suas áreas de atuação e como dar o próximo passo.
 
-**Este CheckUp organiza essa leitura em sete eixos para mostrar o que já funciona bem, onde existem limitações e quais pontos merecem atenção** para tornar essa presença mais clara, consistente e fácil de encontrar.
+**Este CheckUp organiza essa leitura em sete eixos para mostrar o que já funciona bem, onde existem limitações e quais pontos merecem atenção** para tornar essa presença mais clara, consistente e fácil de encontrar.`.trim(),
+          textoPrincipalContinua: `**Por outro lado, as análises e recomendações deste CheckUp devem ser entendidas como pontos de reflexão, e não como verdades absolutas.** Cada profissional possui uma realidade e uma estratégia diferentes, por isso é importante avaliar o que realmente faz sentido para sua atuação.
 
-**Google**
-Mostra como o médico aparece quando alguém pesquisa seu nome e também se consegue ser descoberto por pacientes que buscam pela especialidade e pela cidade.
+As recomendações podem contribuir para uma presença digital mais clara e consistente, mas sua aplicação, isoladamente, **não garante uma evolução completa**. Da mesma forma, **não é necessário estar presente em todas as plataformas**: novos canais só fazem sentido quando estão alinhados à estratégia do profissional.
 
-**Google Meu Negócio**
-Avalia como o médico aparece nas buscas locais, se as informações de atendimento estão claras e se o paciente encontra facilmente endereço, contato e referências sobre a atuação.
+As percepções deste material partem de uma **leitura externa dos canais e informações disponíveis no momento da análise**. Alguns elementos podem ter contextos ou particularidades que não são totalmente visíveis durante a avaliação.
 
-**Instagram**
-Observa como o perfil apresenta o médico, quais conteúdos ajudam a explicar sua atuação e se existe um caminho claro para quem deseja entender mais ou entrar em contato.
-
-**Site profissional**
-Avalia se existe um site próprio capaz de apresentar a atuação com clareza, aprofundar informações e orientar o paciente antes do contato.
-
-**Busca por inteligência artificial**
-Mostra o quanto o médico está preparado para ser encontrado quando pacientes usam inteligência artificial para buscar indicações por especialidade e região.
-
-**Canais de contato (NAP)**
-Mostra se o próximo passo é simples e se o paciente encontra um caminho claro para falar com o consultório.
-
-**Redes Sociais de Vídeo**
-Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade antes da consulta.`.trim(),
-          tagline: "O CHECKUP Estratégico é uma ferramenta essencial para consultórios."
+Por fim, o ambiente digital está em **constante mudança**. Resultados de busca e percepções podem variar ao longo do tempo. Mais importante do que seguir todas as recomendações é **manter consistência e evoluir aquilo que realmente fizer sentido para sua prática profissional**.`.trim(),          tagline: "O CHECKUP Estratégico é uma ferramenta essencial para consultórios."
         },
         metodologia: {
-          titulo: "COMO ESTE\nCHECKUP É AVALIADO?",
-          introducao: "Cada eixo recebe uma nota própria, baseada em critérios específicos. A nota geral combina esses resultados considerando a importância de cada canal na construção de uma presença digital forte.",
+          titulo: "COMO CADA\nEIXO É AVALIADO?",
+          introducao: "Cada eixo recebe uma leitura própria, baseada em critérios objetivos de presença, clareza, consistência e facilidade de descoberta. A escala abaixo ajuda a interpretar o estágio atual de cada canal, sem formar nota geral ou média ponderada.",
           escala: [
             { nota: "9-10", nome: "Referência", descricao: "Presença forte e competitiva.", cor: "#0fbf72" },
             { nota: "7-8", nome: "Bom", descricao: "Canal bem estruturado, com poucos ajustes relevantes.", cor: "#54c96f" },
             { nota: "5-6", nome: "Regular", descricao: "Base funcional, mas ainda com pontos importantes a desenvolver.", cor: "#d8c846" },
             { nota: "3-4", nome: "Fraco", descricao: "Presença limitada ou pouco competitiva.", cor: "#f09a3d" },
             { nota: "1-2", nome: "Crítico", descricao: "Canal existente, mas com problemas relevantes.", cor: "#ef5b48" },
-            { nota: "0", nome: "Inexistente", descricao: "Canal ou presença não identificada.", cor: "#d93636" }
+            { nota: "0", nome: "Inexistente", descricao: "Canal ou presença não identificada.", cor: "#8f8f8f" }
           ],
-          pesos: [
-            { nome: "Google", peso: 20 },
-            { nome: "Google Meu Negócio", peso: 20 },
-            { nome: "Instagram", peso: 15 },
-            { nome: "Site Profissional", peso: 15 },
-            { nome: "Busca por Inteligência Artificial", peso: 15 },
-            { nome: "Canais de contato (NAP)", peso: 10 },
-            { nome: "Redes Sociais de Vídeo", peso: 5 }
-          ],
-          fluxo: ["7 eixos", "Notas individuais", "Pesos", "Nota geral"],        }
+        }
       }
     };
 
-    /* =========================================================
+        /* =========================================================
        SECAO 3: JSON VARIAVEL DO RELATORIO
-       Conteudos personalizados gerados pelo n8n. Ao trocar este
-       bloco por outro JSON, o relatorio deve atualizar todo o
-       conteudo dinamico automaticamente.
-       ========================================================= */
-    /* =========================================================
-       SECAO 3: JSON VARIAVEL DO RELATORIO
-       Substitua apenas o array FINAL_REPORT_JSON pelo JSON final
-       gerado pelo n8n. O normalizador abaixo converte esse formato
-       para a estrutura interna usada pelas paginas do relatorio.
+       O n8n deve substituir o marcador abaixo pelo JSON final.
        ========================================================= */
     const REPORT_INPUT = FINAL_REPORT_JSON;
+
     const FINAL_AXIS_CONFIG = [
       {
         sourceKey: "Google",
         pageId: "eixos_1",
-        tituloEixo: "Pesquisa Google",
-        radarNome: "Pesquisa Google",
-        peso: 20
+        tituloEixo: "Google",
+        radarNome: "Google"
       },
       {
         sourceKey: "GMN",
         pageId: "eixos_2",
-        tituloEixo: "Pesquisa GMN",
-        radarNome: "Pesquisa GMN",
-        peso: 20
-      },
-      {
-        sourceKey: "Instagram",
-        pageId: "eixos_3",
-        tituloEixo: "Instagram",
-        radarNome: "Instagram",
-        peso: 15
+        tituloEixo: "Google Meu Negócio",
+        radarNome: "Google Meu Negócio"
       },
       {
         sourceKey: "Site",
-        pageId: "eixos_4",
-        tituloEixo: "Site",
-        radarNome: "Site",
-        peso: 15
+        pageId: "eixos_3",
+        tituloEixo: "Site profissional",
+        radarNome: "Site profissional"
       },
       {
-        sourceKey: "IA",
+        sourceKey: "Instagram",
+        pageId: "eixos_4",
+        tituloEixo: "Instagram",
+        radarNome: "Instagram"
+      },
+      {
+        sourceKey: "Video",
         pageId: "eixos_5",
-        tituloEixo: "Prontidão para IA",
-        radarNome: "Prontidão IA",
-        peso: 15
+        tituloEixo: "Redes Sociais de Vídeo",
+        radarNome: "Redes Sociais de Vídeo"
       },
       {
         sourceKey: "NAP",
         pageId: "eixos_6",
-        tituloEixo: "Canais de contato (NAP)",
-        radarNome: "NAP",
-        peso: 10
+        tituloEixo: "Canais de Contato (NAP)",
+        radarNome: "Canais de Contato (NAP)"
       },
       {
-        sourceKey: "Video",
+        sourceKey: "IA",
         pageId: "eixos_7",
-        tituloEixo: "Redes Sociais de Vídeo ou Complementares",
-        radarNome: "Redes de Vídeo",
-        peso: 5
+        tituloEixo: "Prontidão para IA",
+        radarNome: "Prontidão para IA",
+        qualitativeOnly: true
       }
     ];
-
     function firstReportRecord(rawJson) {
       if (Array.isArray(rawJson)) {
         return rawJson[0] || {};
       }
       return rawJson || {};
+    }
+
+    function normalizeLinkList(value) {
+      if (!value) return [];
+      const values = Array.isArray(value) ? value : [value];
+      return values
+        .flatMap((item) => typeof item === "string" ? item.split(/[;,\n]+/) : [item])
+        .map((item) => String(item || "").trim())
+        .filter(Boolean);
+    }
+
+    function getAxisPageLinks(axisData) {
+      if (!axisData) return [];
+      return [
+        "paginaAnalisada",
+        "pagina_analisada",
+        "pagina analisada",
+        "linkPagina",
+        "link_pagina",
+        "linkAnalisado",
+        "link_analisado",
+        "link",
+        "links",
+        "url",
+        "urls",
+        "site",
+        "instagram",
+        "gmn",
+        "youtube",
+        "YouTube",
+        "tiktok",
+        "TikTok"
+      ].flatMap((key) => normalizeLinkList(axisData[key]));
     }
 
     function normalizeRecommendations(recommendations) {
@@ -1823,8 +2057,9 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
           tituloEixo: axis.tituloEixo,
           tituloBloco: axisData.titulo || "",
           textoPrincipal: axisData.texto || "",
-          notaEixo: axisData.nota !== undefined ? axisData.nota : "",
-          recomendacoes: normalizeRecommendations(axisData.recomendacoes)
+          notaEixo: axis.qualitativeOnly ? "" : (axisData.nota !== undefined ? axisData.nota : ""),
+          recomendacoes: normalizeRecommendations(axisData.recomendacoes),
+          paginaAnalisada: getAxisPageLinks(axisData)
         };
       });
 
@@ -1838,7 +2073,7 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
             return {
               nome: axis.radarNome,
               nota: axisData.nota !== undefined ? axisData.nota : 0,
-              peso: axis.peso
+              qualitativeOnly: Boolean(axis.qualitativeOnly)
             };
           })
         }
@@ -2126,26 +2361,51 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
       return points.map((point) => point.x.toFixed(2) + "," + point.y.toFixed(2)).join(" ");
     }
 
-    const AXIS_WEIGHTS_BY_PAGE = {
-      eixos_1: 20,
-      eixos_2: 20,
-      eixos_3: 15,
-      eixos_4: 15,
-      eixos_5: 15,
-      eixos_6: 10,
-      eixos_7: 5
-    };
+
+    function renderAxisPageLink(field, pageId) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
+      const links = normalizeLinkList(pageData && pageData.paginaAnalisada).slice(0, pageId === "eixos_5" ? 2 : 1);
+      if (links.length === 0) {
+        return false;
+      }
+
+      field.dataset.axisPageLinkVisible = "true";
+      field.classList.toggle("has-two-qrs", links.length > 1);
+      const qrSlots = links.map((link, index) => `<span class="axis-page-link-qr" data-qr-link="${escapeHtml(link)}" aria-label="QR Code ${pageId === "eixos_5" && index === 0 ? "YouTube" : pageId === "eixos_5" && index === 1 ? "TikTok" : "pagina analisada"}"></span>`).join("");
+
+      field.innerHTML = `
+        <span class="axis-page-link-label">Página<br>analisada:</span>
+        ${qrSlots}
+      `;
+      field.querySelectorAll(".axis-page-link-qr").forEach((slot) => {
+        const link = slot.dataset.qrLink;
+        if (window.QRCode && link) {
+          new QRCode(slot, {
+            text: link,
+            width: 180,
+            height: 180,
+            colorDark: "#111111",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } else {
+          slot.textContent = "QR";
+        }
+      });
+      return true;
+    }
 
     function renderAxisScore(field, pageId) {
       const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
       const score = pageData && Object.prototype.hasOwnProperty.call(pageData, "notaEixo") ? pageData.notaEixo : "";
-      const weight = AXIS_WEIGHTS_BY_PAGE[pageId];
-      const note = weight ? `Peso de ${weight}% na nota final` : "Peso considerado na nota final";
+      if (pageId === "eixos_7") {
+        field.remove();
+        return;
+      }
       field.innerHTML = `
         <div class="score-pill-large axis-score-pill">
           <div class="score-pill-title">Nota</div>
           <div class="score-pill-value"><span>${escapeHtml(score)}</span><span class="score-pill-limit">/10</span></div>
-          <div class="score-pill-note">${escapeHtml(note)}</div>
         </div>
       `;
     }
@@ -2195,12 +2455,21 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
     function renderAxisRecommendations(field, pageId) {
       const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas[pageId];
       const recommendations = Array.isArray(pageData && pageData.recomendacoes) ? pageData.recomendacoes : [];
-      const items = recommendations.map((recommendation, index) => {
-        const item = normalizeRecommendation(recommendation);
-        return `
-          <div class="axis-recommendation-pill"><span class="axis-recommendation-number">${index + 1}</span>${renderEffortDots(item.esforco)}<span class="axis-recommendation-pill-text">${renderInlineMarkdown(item.texto)}</span></div>
+      const validRecommendations = recommendations
+        .map(normalizeRecommendation)
+        .filter((item) => String(item.texto || "").trim());
+
+      if (validRecommendations.length === 0) {
+        field.innerHTML = `
+          <div class="axis-recommendations-title">Recomendações</div>
+          <div class="axis-recommendations-empty"><span><strong>Nenhuma recomendação concreta identificada</strong>Continue mantendo este eixo consistente, atualizado e alinhado à sua estratégia digital.</span></div>
         `;
-      }).join("");
+        return;
+      }
+
+      const items = validRecommendations.map((item, index) => `
+        <div class="axis-recommendation-pill"><span class="axis-recommendation-number">${index + 1}</span>${renderEffortDots(item.esforco)}<span class="axis-recommendation-pill-text">${renderInlineMarkdown(item.texto)}</span></div>
+      `).join("");
 
       field.innerHTML = `
         <div class="axis-recommendations-title">Recomendações</div>
@@ -2254,14 +2523,20 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
           <div><span class="methodology-scale-name">${escapeHtml(item.nome || "")}</span><span class="methodology-scale-desc">${escapeHtml(item.descricao || "")}</span></div>
         </div>
       `).join("");
-      const weightItems = (data.pesos || []).map((item) => `
-        <div class="methodology-weight-item" style="--weight: ${Number(item.peso) || 0}">
-          <span class="methodology-weight-name">${escapeHtml(item.nome || "")}</span>
-          <span class="methodology-weight-value">${escapeHtml(item.peso || "")}%</span>
-          <span class="methodology-weight-track"><span class="methodology-weight-bar"></span></span>
+      const axisCards = [
+        { titulo: "Google", texto: "Mostra como o médico aparece quando alguém pesquisa seu nome e se também consegue ser encontrado por pacientes que buscam pela especialidade e pela cidade." },
+        { titulo: "Google Meu Negócio", texto: "Avalia a presença nas buscas locais, a clareza de endereço, telefone, horários, avaliações e demais informações que ajudam o paciente a confirmar o atendimento." },
+        { titulo: "Site profissional", texto: "Analisa se existe uma fonte própria capaz de apresentar a atuação com clareza, organizar informações relevantes e orientar o paciente antes do contato." },
+        { titulo: "Instagram", texto: "Observa como o perfil apresenta o médico, quais conteúdos ajudam a explicar sua atuação e se existe um caminho claro para contato ou aprofundamento." },
+        { titulo: "Redes Sociais de Vídeo", texto: "Avalia como YouTube e TikTok podem informar, aproximar e gerar familiaridade antes da consulta, sem obrigar o profissional a atuar nesses canais." },
+        { titulo: "Canais de Contato (NAP)", texto: "NAP significa Name, Address, Phone: nome, endereço e telefone. O eixo verifica se esses dados estão claros e consistentes para facilitar o contato." },
+        { titulo: "Prontidão para IA", texto: "Leitura qualitativa sobre a clareza das informações públicas para ferramentas de inteligência artificial.", qualitative: true }
+      ].map((axis) => `
+        <div class="methodology-axis-card${axis.qualitative ? " methodology-axis-card-qualitative" : ""}">
+          <span class="methodology-axis-card-title">${escapeHtml(axis.titulo)}</span>
+          <span class="methodology-axis-card-text">${escapeHtml(axis.texto)}</span>
         </div>
       `).join("");
-      const flowSteps = (data.fluxo || []).map((step, index, items) => `<div class="methodology-flow-step">${escapeHtml(step)}</div>${index < items.length - 1 ? `<span class="methodology-flow-arrow" aria-hidden="true"></span>` : ""}`).join("");
       field.innerHTML = `
         <div class="methodology-shell">
           <header class="methodology-header">
@@ -2270,15 +2545,15 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
           </header>
           <div class="methodology-main">
             <section class="methodology-panel">
+              <h3 class="methodology-panel-title">Eixos analisados</h3>
+              <div class="methodology-axis-grid">${axisCards}</div>
+            </section>
+            <section class="methodology-panel">
               <h3 class="methodology-panel-title">Escala de avaliação</h3>
               <div class="methodology-scale">${scaleItems}</div>
             </section>
-            <section class="methodology-panel">
-              <h3 class="methodology-panel-title">Como a nota geral é formada</h3>
-              <div class="methodology-weights">${weightItems}</div>
-            </section>
           </div>
-          <div class="methodology-flow">${flowSteps}</div>
+          <div class="methodology-axis-footnote">* Prontidão para IA não recebe nota porque respostas de inteligência artificial variam conforme ferramenta, pergunta, fontes disponíveis e momento da busca.</div>
         </div>
       `;
     }
@@ -2338,6 +2613,127 @@ Avaliam como a comunicação em vídeo informa, aproxima e gera familiaridade an
           <div class="score-pill-note">Média ponderada conforme metodologia</div>
         </div>
       `;
+    }
+
+    function getDiagnosisScoreStatus(score) {
+      const value = Number(score);
+      if (!Number.isFinite(value) || value <= 0) {
+        return { label: "Inexistente", color: "#8f8f8f" };
+      }
+      if (value <= 2) {
+        return { label: "Crítico", color: "#ef5b48" };
+      }
+      if (value <= 4) {
+        return { label: "Fraco", color: "#f09a3d" };
+      }
+      if (value <= 6) {
+        return { label: "Regular", color: "#d8b928" };
+      }
+      if (value <= 8) {
+        return { label: "Bom", color: "#54c96f" };
+      }
+      return { label: "Referência", color: "#0fbf72" };
+    }
+
+    function renderDiagnosisAxisTable(field) {
+      const pageData = REPORT_DATA.paginas && REPORT_DATA.paginas.diagnostico;
+      const axes = ((pageData && pageData.radarEixos && pageData.radarEixos.eixos) || []).filter(Boolean);
+      const rows = axes.map((axis) => {
+        const axisName = axis.nome || "";
+        const isQualitativeAxis = axisName === "Prontidão para IA";
+        if (isQualitativeAxis) {
+          return `
+          <tr>
+            <td class="diagnosis-axis-name">${escapeHtml(axisName)}</td>
+            <td class="diagnosis-axis-status-cell" colspan="2"><span class="diagnosis-axis-status diagnosis-axis-no-score">EIXO SEM NOTA</span></td>
+          </tr>
+        `;
+        }
+
+        const score = axis.nota !== undefined && axis.nota !== null && axis.nota !== "" ? axis.nota : 0;
+        const status = getDiagnosisScoreStatus(score);
+        return `
+          <tr>
+            <td class="diagnosis-axis-name">${escapeHtml(axisName)}</td>
+            <td class="diagnosis-axis-score">${escapeHtml(score)}</td>
+            <td class="diagnosis-axis-status-cell"><span class="diagnosis-axis-status" style="background-color: ${status.color}">${escapeHtml(status.label)}</span></td>
+          </tr>
+        `;
+      }).join("");
+
+      field.innerHTML = `
+        <div class="diagnosis-axis-table-title">Notas por eixo</div>
+        <table class="diagnosis-axis-table" aria-label="Notas por eixo">
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    function renderDiagnosisActions(field) {
+      field.innerHTML = `
+        <div class="diagnosis-actions-shell">
+          <div class="diagnosis-actions-title">Se você for mexer em três coisas</div>
+          <ul class="diagnosis-actions-list">
+            <li><span class="diagnosis-actions-number">1</span><span class="diagnosis-actions-text">Padronizar nome, especialidade, cidade, região de atendimento, telefone, WhatsApp, links principais e descrições em todos os pontos onde o paciente confirma as informações antes de decidir entrar em contato.</span></li>
+            <li><span class="diagnosis-actions-number">2</span><span class="diagnosis-actions-text">Reforçar as informações que ajudam o paciente a entender a atuação, os diferenciais, os temas tratados, o tipo de consulta e o caminho recomendado antes de enviar uma mensagem ou agendar atendimento.</span></li>
+            <li><span class="diagnosis-actions-number">3</span><span class="diagnosis-actions-text">Priorizar os canais com maior impacto na descoberta e na confiança do consultório, começando pelos ajustes que melhoram busca local, clareza de contato, consistência entre plataformas e percepção profissional.</span></li>
+          </ul>
+        </div>
+      `;
+    }
+
+    function fitDiagnosisActionsBlock(scope = document) {
+      const field = scope.querySelector && scope.querySelector(".field-diagnostico-acoes");
+      if (!field) return;
+
+      const cards = Array.from(field.querySelectorAll(".diagnosis-actions-list li"));
+      const texts = Array.from(field.querySelectorAll(".diagnosis-actions-text"));
+      if (cards.length === 0 || texts.length === 0) return;
+
+      const initialTop = 60.2;
+      const initialHeight = 30.8;
+      const minTop = 56.8;
+      const maxHeight = 34.2;
+      const maxFontSize = 10;
+      const minFontSize = 8;
+
+      function applyLayout(top, height, fontSize) {
+        field.style.top = top + "%";
+        field.style.height = height + "%";
+        texts.forEach((text) => {
+          text.style.fontSize = fontSize + "pt";
+        });
+      }
+
+      function overflows() {
+        return cards.some((card) => card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1);
+      }
+
+      applyLayout(initialTop, initialHeight, maxFontSize);
+      if (!overflows()) return;
+
+      for (let i = 1; i <= 12; i += 1) {
+        const progress = i / 12;
+        const top = initialTop - ((initialTop - minTop) * progress);
+        const height = initialHeight + ((maxHeight - initialHeight) * progress);
+        applyLayout(top, height, maxFontSize);
+        if (!overflows()) return;
+      }
+
+      let low = minFontSize;
+      let high = maxFontSize;
+      let best = minFontSize;
+      for (let i = 0; i < 18; i += 1) {
+        const mid = (low + high) / 2;
+        applyLayout(minTop, maxHeight, mid);
+        if (overflows()) {
+          high = mid;
+        } else {
+          best = mid;
+          low = mid;
+        }
+      }
+      applyLayout(minTop, maxHeight, best);
     }
     function renderRadarChart(field, config) {
       const values = (config && config.eixos) || [];
@@ -2408,10 +2804,11 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
         }
         page.dataset.page = pageConfig.id;
 
-        pageFileCounts[pageConfig.file] = (pageFileCounts[pageConfig.file] || 0) + 1;
+        const debugPageName = pageConfig.debugName || pageConfig.id;
+        pageFileCounts[debugPageName] = (pageFileCounts[debugPageName] || 0) + 1;
         const pageLabel = document.createElement("div");
         pageLabel.className = "debug-page-label";
-        pageLabel.textContent = pageFileCounts[pageConfig.file] > 1 ? pageConfig.file + " #" + pageFileCounts[pageConfig.file] : pageConfig.file;
+        pageLabel.textContent = pageFileCounts[debugPageName] > 1 ? debugPageName + " #" + pageFileCounts[debugPageName] : debugPageName;
         page.appendChild(pageLabel);
 
         if (pageConfig.id !== "capa" && !pageConfig.hideFooter) {
@@ -2459,10 +2856,20 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
             renderRadarChart(field, fieldValue);
           } else if (fieldConfig.type === "average-score") {
             renderAverageScore(field, pageConfig.id);
+          } else if (fieldConfig.type === "diagnosis-axis-table") {
+            renderDiagnosisAxisTable(field);
+          } else if (fieldConfig.type === "diagnosis-actions") {
+            renderDiagnosisActions(field);
           } else if (fieldConfig.type === "axis-score") {
             renderAxisScore(field, pageConfig.id);
           } else if (fieldConfig.type === "axis-recommendations") {
             renderAxisRecommendations(field, pageConfig.id);
+          } else if (fieldConfig.type === "axis-qualitative-note") {
+            field.textContent = "Prontidão para IA não recebe nota porque respostas de inteligência artificial variam conforme ferramenta, pergunta, fontes disponíveis e momento da busca.";
+          } else if (fieldConfig.type === "axis-page-link") {
+            if (renderAxisPageLink(field, pageConfig.id) === false) {
+              return;
+            }
           } else if (fieldConfig.type === "flow-text") {
             field.dataset.flowSource = "true";
           } else if (fieldConfig.type === "flow-target") {
@@ -2472,6 +2879,9 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
           }
 
           page.appendChild(field);
+          if (field.dataset.axisPageLinkVisible === "true") {
+            page.classList.add("has-axis-page-link");
+          }
 
           if (fieldConfig.type === "fit-text" || fieldConfig.type === "markdown-fit-text") {
             fieldsToFit.push(field);
@@ -2510,6 +2920,7 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
           fieldsToFit.forEach(fitTextToBox);
           adjustAxisPageLayout(page);
           fitAxisTextToBox(page.querySelector(".field-eixo-texto"));
+          fitDiagnosisActionsBlock(page);
           recommendationFieldsToTrim.forEach(trimOverflowingAxisRecommendations);
           debugLabelPairs.forEach(({ field, label }) => positionDebugFieldLabel(field, label));
         });
@@ -2523,13 +2934,13 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
 
         if (overflowingGroups.length > 0 && pageConfig.allowFlowRepeat) {
           result.page.remove();
-          pageFileCounts[pageConfig.file] -= 1;
+          pageFileCounts[pageConfig.debugName || pageConfig.id] -= 1;
           const compactResult = renderPageInstance(pageConfig, { compactFlow: true });
           const compactStillOverflows = Object.keys(compactResult.flowResultByGroup).some((groupId) => compactResult.flowResultByGroup[groupId].hasOverflow);
 
           if (compactStillOverflows) {
             compactResult.page.remove();
-            pageFileCounts[pageConfig.file] -= 1;
+            pageFileCounts[pageConfig.debugName || pageConfig.id] -= 1;
             result = renderPageInstance(pageConfig, { compactFlow: false });
           } else {
             result = compactResult;
@@ -2569,6 +2980,7 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
       document.querySelectorAll(".page").forEach((page) => {
         adjustAxisPageLayout(page);
         fitAxisTextToBox(page.querySelector(".field-eixo-texto"));
+        fitDiagnosisActionsBlock(page);
         page.querySelectorAll(".field-eixo-recomendacoes").forEach(trimOverflowingAxisRecommendations);
       });
     }
@@ -2657,34 +3069,7 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
       recalculateAxisLayouts();
       validateNoParagraphSeparatorLeak();
     }
-    function updateDebugToggleButton() {
-      const button = document.getElementById("toggleDebugBoxes");
-      if (!button) return;
-      button.textContent = ASSETS.showDebugBoxes ? "Debug: ON" : "Debug: OFF";
-      button.setAttribute("aria-pressed", String(Boolean(ASSETS.showDebugBoxes)));
-    }
-
-    function setupBuilderDebugToggle() {
-      const button = document.getElementById("toggleDebugBoxes");
-      if (!button) return;
-      updateDebugToggleButton();
-      button.addEventListener("click", () => {
-        ASSETS.showDebugBoxes = !ASSETS.showDebugBoxes;
-        document.body.classList.toggle("debug-boxes", Boolean(ASSETS.showDebugBoxes));
-        updateDebugToggleButton();
-      });
-    }
-
-    function setupBuilderPdfExport() {
-      const button = document.getElementById("exportPdfButton");
-      if (!button) return;
-      button.addEventListener("click", () => {
-        requestAnimationFrame(() => window.print());
-      });
-    }
     renderReport();
-    setupBuilderDebugToggle();
-    setupBuilderPdfExport();
     requestAnimationFrame(() => requestAnimationFrame(recalculateAndValidateReport));
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => requestAnimationFrame(recalculateAndValidateReport));
@@ -2693,229 +3078,4 @@ ${maxShadow}${maxRays}${area}${scorePills}${labels}
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
